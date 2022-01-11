@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Kuenstler Script LT Std";
+  src: url("/fonts/KuenstlerScriptLTStd-Medium.woff2") format("woff2"),
+    url("/fonts/KuenstlerScriptLTStd-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lausanne";
+  src: url("/fonts/lausanne-300-webfont.woff2") format("woff2"),
+    url("/fonts/lausanne-300-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
