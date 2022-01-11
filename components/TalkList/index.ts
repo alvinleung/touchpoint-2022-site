@@ -1,3 +1,4 @@
 import { TalkItem } from "./TalkItem";
 import { TalkList } from "./TalkList";
-export { TalkList, TalkItem };
+import { Intermission } from "./Intermission";
+export { TalkList, TalkItem, Intermission };

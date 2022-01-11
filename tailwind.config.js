@@ -8,12 +8,13 @@ module.exports = {
       sans: ["Lausanne", "sans-serif"],
       script: ["Kuenstler Script LT Std", "serif"],
     },
-    fontSize: {
-      small: "30px",
-      big: "100px",
-      "huge-script": "348px",
+    extend: {
+      fontSize: {
+        small: "24px",
+        big: "100px",
+        "huge-script": "348px",
+      },
     },
-    extend: {},
   },
   plugins: [],
 };
