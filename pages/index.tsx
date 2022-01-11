@@ -16,11 +16,18 @@ const Home: NextPage = () => {
       <main>
         {/* <h1 className="mt-4 ml-8 text-small uppercase mb-64">Some title</h1> */}
         <TalkList>
-          {TalkInformation.map(({ time, graduation, role, name, title }) => (
-            <TalkItem time={time} graduation={graduation} role={role}>
-              {`${name} “${title}”`}
-            </TalkItem>
-          ))}
+          {TalkInformation.map(
+            ({ time, graduation, role, name, title }, index) => (
+              <TalkItem
+                time={time}
+                graduation={graduation}
+                role={role}
+                key={index}
+              >
+                {`${name} “${title}”`}
+              </TalkItem>
+            )
+          )}
         </TalkList>
       </main>
     </div>
