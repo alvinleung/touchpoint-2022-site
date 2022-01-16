@@ -3,8 +3,8 @@ import Head from "next/head";
 import React from "react";
 import StretchyType from "../components/StretchyType/StretchyType";
 
-import MouseChecker from "../components/MouseChecker/MouseChecker";
-import ClickableChecker from "../components/MouseChecker/ClickableChecker";
+// import MouseChecker from "../components/MouseChecker/MouseChecker";
+// import ClickableChecker from "../components/MouseChecker/ClickableChecker";
 
 //@ts-ignore
 import { Curtains } from "react-curtains";
