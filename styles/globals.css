@@ -12,10 +12,23 @@ body {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: #f02828;
+  text-decoration: underline;
+  text-underline-offset: 0.02vh;
+  text-decoration-thickness: 0.02em;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.curtains-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+
+  z-index: 1000;
 }
