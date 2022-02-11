@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import * as twgl from "twgl.js";
-
+//@ts-ignore
 import OVERLAY_FRAG from "./Overlay.frag";
+//@ts-ignore
 import OVERLAY_VERT from "./Overlay.vert";
 
 interface Props {
