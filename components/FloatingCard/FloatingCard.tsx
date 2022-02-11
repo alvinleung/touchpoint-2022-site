@@ -115,30 +115,30 @@ function FloatingCard({}: Props) {
       });
     }
 
-    document.addEventListener("click", () => {
+    // document.addEventListener("click", () => {
+    //@ts-ignore
+    if (typeof DeviceOrientationEvent.requestPermission === "function") {
       //@ts-ignore
-      if (typeof DeviceOrientationEvent.requestPermission === "function") {
-        //@ts-ignore
-        DeviceOrientationEvent.requestPermission()
-          .then((permissionState) => {
-            if (permissionState === "granted") {
-              // window.addEventListener("devicemotion", () => {});
-              window.addEventListener(
-                "deviceorientation",
-                handleOrientation,
-                true
-              );
-            } else {
-              alert("Permission Denied: Please enable permission");
-            }
-          })
-          .catch((err) => {
-            alert("yes");
-          });
-      } else {
-        // handle regular non iOS 13+ devices
-      }
-    });
+      DeviceOrientationEvent.requestPermission()
+        .then((permissionState) => {
+          if (permissionState === "granted") {
+            // window.addEventListener("devicemotion", () => {});
+            window.addEventListener(
+              "deviceorientation",
+              handleOrientation,
+              true
+            );
+          } else {
+            alert("Permission Denied: Enable permission for phsyical effect");
+          }
+        })
+        .catch((err) => {
+          alert("yes");
+        });
+    } else {
+      // handle regular non iOS 13+ devices
+    }
+    // });
   }, []);
 
   return (
