@@ -116,7 +116,9 @@ function FloatingCard({}: Props) {
     }
 
     document.addEventListener("click", () => {
+      //@ts-ignore
       if (typeof DeviceOrientationEvent.requestPermission === "function") {
+        //@ts-ignore
         DeviceOrientationEvent.requestPermission()
           .then((permissionState) => {
             if (permissionState === "granted") {
