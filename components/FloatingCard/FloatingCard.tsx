@@ -92,6 +92,8 @@ function FloatingCard({}: Props) {
   // add accelerometer
   useEffect(() => {
     function handleOrientation(event) {
+      // alert("orientation change");
+
       var beta = event.beta; // In degree in the range [-180,180)
       var gamma = event.gamma; // In degree in the range [-90,90)
 
@@ -106,7 +108,6 @@ function FloatingCard({}: Props) {
 
       const maxGravityX = 200;
       const maxGravityY = 200;
-      console.log(beta);
 
       worldRef.current.SetGravity({
         x: (gamma / 90) * maxGravityX,
@@ -114,7 +115,28 @@ function FloatingCard({}: Props) {
       });
     }
 
-    window.addEventListener("deviceorientation", handleOrientation);
+    document.addEventListener("click", () => {
+      if (typeof DeviceOrientationEvent.requestPermission === "function") {
+        DeviceOrientationEvent.requestPermission()
+          .then((permissionState) => {
+            if (permissionState === "granted") {
+              // window.addEventListener("devicemotion", () => {});
+              window.addEventListener(
+                "deviceorientation",
+                handleOrientation,
+                true
+              );
+            } else {
+              alert("Permission Denied: Please enable permission");
+            }
+          })
+          .catch((err) => {
+            alert("yes");
+          });
+      } else {
+        // handle regular non iOS 13+ devices
+      }
+    });
   }, []);
 
   return (
