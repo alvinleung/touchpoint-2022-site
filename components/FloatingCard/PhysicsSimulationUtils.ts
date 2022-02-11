@@ -33,7 +33,7 @@ export interface WorldObjects {
   [key: string]: PhysicsObject;
 }
 
-export const WORLD_SCALE = 100;
+export const WORLD_SCALE = 20;
 
 export const getWorldSizeInfo = (width: number, height: number) => {
   const aspectRatio = width / height;

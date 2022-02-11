@@ -35,6 +35,14 @@ export function updateWallPositions(
   wallTop.body.SetTransformXY(0, worldSizeInfo.scaled.height, 0);
 }
 
+const previousWidth = 0;
+export function resizeBoxPosition(
+  worldObjects: WorldObjects,
+  worldSizeInfo: WorldSizeInfo
+) {
+  // worldObjects.dynamicBox.body.SetTransformXY(worldSizeInfo.scaled.width);
+}
+
 export function initPhysicsSimulation({
   worldSizeInfo,
 }: {
