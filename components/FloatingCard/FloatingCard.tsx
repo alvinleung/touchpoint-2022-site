@@ -16,11 +16,6 @@ function FloatingCard({}: Props) {
   const worldObjectsRef = useRef() as MutableRefObject<any>;
 
   const mouseInputPos = useRef({ x: 0, y: 0 });
-  const [accelerometerReading, setAccelerometerReading] = useState({
-    x: 0,
-    y: 0,
-    z: 0,
-  });
   const isMouseDown = useRef(false);
 
   const handleMouseUp = (e: React.MouseEvent) => {
@@ -94,50 +89,32 @@ function FloatingCard({}: Props) {
     );
   };
 
-  useEffect(() => {
-    // update the gravity
-    worldRef.current.SetGravity({
-      x: accelerometerReading.x,
-      y: accelerometerReading.y,
-    });
-  }, [accelerometerReading]);
-
   // add accelerometer
   useEffect(() => {
-    // @ts-ignore
-    let acl: any = null;
+    function handleOrientation(event) {
+      var beta = event.beta; // In degree in the range [-180,180)
+      var gamma = event.gamma; // In degree in the range [-90,90)
 
-    try {
-      // @ts-ignore
-      acl = new Accelerometer({ frequency: 60 });
-      const handleSensorRead = () => {
-        // console.log("Acceleration along the X-axis " + acl.x);
-        // console.log("Acceleration along the Y-axis " + acl.y);
-        // console.log("Acceleration along the Z-axis " + acl.z);
-        setAccelerometerReading({
-          x: acl.x,
-          y: acl.y,
-          z: acl.z,
-        });
-      };
-      acl.addEventListener("reading", handleSensorRead);
-      acl.start();
-
-      return () => {
-        acl.removeEventListener("reading", handleSensorRead);
-      };
-    } catch (error: any) {
-      // Handle construction errors.
-      if (error.name === "SecurityError") {
-        console.log(
-          "Sensor construction was blocked by the Permissions Policy."
-        );
-      } else if (error.name === "ReferenceError") {
-        console.log("Sensor is not supported by the User Agent.");
-      } else {
-        throw error;
+      // Because we don't want to have the device upside down
+      // We constrain the x value to the range [-90,90]
+      if (beta > 90) {
+        beta = 90;
       }
+      if (beta < -90) {
+        beta = -90;
+      }
+
+      const maxGravityX = 200;
+      const maxGravityY = 200;
+      console.log(beta);
+
+      worldRef.current.SetGravity({
+        x: (gamma / 90) * maxGravityX,
+        y: -(beta / 90) * maxGravityY,
+      });
     }
+
+    window.addEventListener("deviceorientation", handleOrientation);
   }, []);
 
   return (

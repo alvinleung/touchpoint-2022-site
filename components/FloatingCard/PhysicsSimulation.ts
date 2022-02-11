@@ -106,7 +106,7 @@ export function initPhysicsSimulation({
     // for fixture
     density: 1,
     friction: 0.1,
-    restitution: 1,
+    restitution: 0.4,
     // mass: 1,
   });
 
