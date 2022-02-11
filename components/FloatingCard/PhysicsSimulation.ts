@@ -15,6 +15,26 @@ const boxSize = {
   height: 2,
 };
 
+export function updateWallPositions(
+  worldObjects: WorldObjects,
+  worldSizeInfo: WorldSizeInfo
+) {
+  // move the walls to the new position
+  const { wallLeft, wallRight, wallBottom, wallTop } = worldObjects;
+  wallLeft.body.SetTransformXY(
+    -worldSizeInfo.scaled.width * 0.5,
+    worldSizeInfo.scaled.height / 2,
+    0
+  );
+  wallRight.body.SetTransformXY(
+    worldSizeInfo.scaled.width * 0.5,
+    worldSizeInfo.scaled.height / 2,
+    0
+  );
+  wallBottom.body.SetTransformXY(0, 0, 0);
+  wallTop.body.SetTransformXY(0, worldSizeInfo.scaled.height, 0);
+}
+
 export function initPhysicsSimulation({
   worldSizeInfo,
 }: {
@@ -24,6 +44,9 @@ export function initPhysicsSimulation({
   const gravity = new b2Vec2(0, -0.5);
   const world = b2World.Create(gravity);
   world.SetAllowSleeping(true);
+
+  const maxStretchingScale = 2;
+  const wallThickness = 0;
 
   const groundBodyObject = createPhsyicsObject(world, {
     x: -worldSizeInfo.scaled.width * 0.5,
@@ -38,30 +61,30 @@ export function initPhysicsSimulation({
   const walls = {
     right: createPhsyicsObject(world, {
       x: worldSizeInfo.scaled.width * 0.5,
-      y: worldSizeInfo.scaled.height / 2,
-      width: 0,
+      y: (worldSizeInfo.scaled.height / 2) * maxStretchingScale,
+      width: wallThickness,
       height: worldSizeInfo.scaled.height,
       isFixed: true,
     }),
     left: createPhsyicsObject(world, {
       x: -worldSizeInfo.scaled.width * 0.5,
-      y: worldSizeInfo.scaled.height / 2,
-      width: 0,
+      y: (worldSizeInfo.scaled.height / 2) * maxStretchingScale,
+      width: wallThickness,
       height: worldSizeInfo.scaled.height,
       isFixed: true,
     }),
     top: createPhsyicsObject(world, {
       x: 0,
       y: worldSizeInfo.scaled.height,
-      width: worldSizeInfo.scaled.width,
-      height: 0,
+      width: worldSizeInfo.scaled.width * maxStretchingScale,
+      height: wallThickness,
       isFixed: true,
     }),
     bottom: createPhsyicsObject(world, {
       x: 0,
       y: 0,
-      width: worldSizeInfo.scaled.width,
-      height: 0,
+      width: worldSizeInfo.scaled.width * maxStretchingScale,
+      height: wallThickness,
       isFixed: true,
     }),
   };

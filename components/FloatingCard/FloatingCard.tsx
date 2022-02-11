@@ -4,6 +4,7 @@ import AutoResizeCanvas from "./AutoResizeCanvas";
 import {
   initPhysicsSimulation,
   updatePhysicsSimulation,
+  updateWallPositions,
 } from "./PhysicsSimulation";
 import { getWorldSizeInfo, WorldSizeInfo } from "./PhysicsSimulationUtils";
 
@@ -81,6 +82,13 @@ function FloatingCard({}: Props) {
     });
   };
 
+  const onResize = (width: number, height: number) => {
+    updateWallPositions(
+      worldObjectsRef.current,
+      getWorldSizeInfo(width, height)
+    );
+  };
+
   return (
     <div
       ref={containerRef}
@@ -88,7 +96,11 @@ function FloatingCard({}: Props) {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
     >
-      <AutoResizeCanvas onRender={onRender} onInit={onInit} />
+      <AutoResizeCanvas
+        onRender={onRender}
+        onInit={onInit}
+        onResize={onResize}
+      />
     </div>
   );
 }

@@ -66,7 +66,7 @@ export function createPhsyicsObject(
   return {
     width: config.width,
     height: config.height,
-    hidden: config.hidden,
+    hidden: config.hidden ? true : false,
     body: body,
     shape: shape,
   };

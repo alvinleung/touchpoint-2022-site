@@ -47,12 +47,11 @@ function createMouseJoint(
   mouseJointDef.bodyA = ground.body;
   mouseJointDef.bodyB = box.body;
   mouseJointDef.maxForce = 5000.0;
-  mouseJointDef.damping = 2;
-  mouseJointDef.stiffness = 400;
+  mouseJointDef.damping = 1000;
+  mouseJointDef.stiffness = 5000;
 
   // the initial target is the body
   // can be other things too
-
   //@ts-ignore
   mouseJointDef.target = mouseWorldPos;
   return world.CreateJoint(mouseJointDef);

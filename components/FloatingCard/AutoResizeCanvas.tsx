@@ -10,9 +10,10 @@ type Props = {
     canvas: HTMLCanvasElement,
     context: CanvasRenderingContext2D
   ) => void;
+  onResize?: (width: number, height: number) => void;
 };
 
-function AutoResizeCanvas({ onRender, onInit }: Props) {
+function AutoResizeCanvas({ onRender, onInit, onResize }: Props) {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [canvasSize, setCanvasSize] = useState({ width: 300, height: 300 });
   const context = useRef() as MutableRefObject<CanvasRenderingContext2D>;
@@ -40,11 +41,16 @@ function AutoResizeCanvas({ onRender, onInit }: Props) {
 
   useEffect(() => {
     function handleResize() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
       // handle window resize
       setCanvasSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: width,
+        height: height,
       });
+
+      onResize && onResize(width, height);
     }
     handleResize();
 
