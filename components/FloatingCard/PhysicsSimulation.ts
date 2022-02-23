@@ -9,6 +9,7 @@ import {
   WorldSizeInfo,
   WORLD_SCALE,
 } from "./PhysicsSimulationUtils";
+import { loadImages } from "./ImageAssets";
 
 const boxSize = {
   width: 4,
@@ -43,11 +44,14 @@ export function resizeBoxPosition(
   // worldObjects.dynamicBox.body.SetTransformXY(worldSizeInfo.scaled.width);
 }
 
-export function initPhysicsSimulation({
+export async function initPhysicsSimulation({
   worldSizeInfo,
 }: {
   worldSizeInfo: WorldSizeInfo;
-}): [b2World, WorldObjects] {
+}): Promise<[b2World, WorldObjects]> {
+  // load images
+  const imgs = await loadImages({ landingCover: "landing-card.jpg" });
+
   // setup here
   const gravity = new b2Vec2(0, -0.5);
   const world = b2World.Create(gravity);
@@ -97,18 +101,31 @@ export function initPhysicsSimulation({
     }),
   };
 
-  const dynamicBox = createPhsyicsObject(world, {
-    x: 0,
-    y: worldSizeInfo.scaled.height * 0.6,
-    width: boxSize.width,
-    height: boxSize.height,
-    angle: 0.1,
-    // for fixture
-    density: 1,
-    friction: 0.1,
-    restitution: 0.4,
-    // mass: 1,
-  });
+  const targetScaleFactor = 2.3;
+  const scaleFactor = targetScaleFactor / 100;
+
+  const imageAspectRatio = imgs.landingCover.width / imgs.landingCover.height;
+  const boxWdith = scaleFactor * worldSizeInfo.actual.width;
+  const boxHeight =
+    (scaleFactor / imageAspectRatio) * worldSizeInfo.actual.width;
+  console.log(boxWdith);
+
+  const dynamicBox = createPhsyicsObject(
+    world,
+    {
+      x: 0,
+      y: worldSizeInfo.scaled.height * 0.6,
+      width: boxWdith,
+      height: boxHeight,
+      angle: 0.1,
+      // for fixture
+      density: 0.5,
+      friction: 0.1,
+      restitution: 0.4,
+      // mass: 1,
+    },
+    imgs.landingCover
+  );
 
   // const dynamicBoxBody = dynamicBox.body;
   // dynamicBoxBody.ApplyForceToCenter({ x: 10, y: 0 });

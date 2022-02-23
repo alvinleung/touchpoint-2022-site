@@ -1,7 +1,7 @@
-import { PhysicsObject } from "./PhysicsObject";
+import { PhysicsImage, PhysicsObject } from "./PhysicsObject";
 
 export function drawBox(
-  object: PhysicsObject,
+  object: PhysicsImage | PhysicsObject,
   context: CanvasRenderingContext2D
 ) {
   const dyanmicBody = object.body;
@@ -12,14 +12,25 @@ export function drawBox(
   {
     context.translate(dynamicPos.x, dynamicPos.y);
     context.rotate(dyanmicBody.GetAngle());
+    context.scale(1, -1);
 
-    // draw content
-    context.fillRect(
-      (-object.width * 2) / 2,
-      (-object.height * 2) / 2,
-      object.width * 2,
-      object.height * 2
-    );
+    if ((object as PhysicsImage).image) {
+      // draw content
+      context.drawImage(
+        (object as PhysicsImage).image,
+        (-object.width * 2) / 2,
+        (-object.height * 2) / 2,
+        object.width * 2,
+        object.height * 2
+      );
+    } else {
+      context.fillRect(
+        (-object.width * 2) / 2,
+        (-object.height * 2) / 2,
+        object.width * 2,
+        object.height * 2
+      );
+    }
   }
   context.restore();
 }

@@ -9,7 +9,7 @@ type Props = {
   onInit?: (
     canvas: HTMLCanvasElement,
     context: CanvasRenderingContext2D
-  ) => void;
+  ) => Promise<any>;
   onResize?: (width: number, height: number) => void;
 };
 
@@ -17,6 +17,7 @@ function AutoResizeCanvas({ onRender, onInit, onResize }: Props) {
   const canvasRef = useRef() as MutableRefObject<HTMLCanvasElement>;
   const [canvasSize, setCanvasSize] = useState({ width: 300, height: 300 });
   const context = useRef() as MutableRefObject<CanvasRenderingContext2D>;
+  const [hasInit, setHasInit] = useState(false);
 
   // context and loop
   useEffect(() => {
@@ -25,21 +26,27 @@ function AutoResizeCanvas({ onRender, onInit, onResize }: Props) {
       "2d"
     ) as CanvasRenderingContext2D;
 
-    // init
-    onInit && onInit(canvasRef.current, context.current);
+    async function init() {
+      // init
+      onInit && (await onInit(canvasRef.current, context.current));
+      setHasInit(true);
 
-    let previousFrameTime = 0;
-    function updateFrame(currentFrameTime: number) {
-      const delta = (currentFrameTime - previousFrameTime) / 1000;
-      previousFrameTime = currentFrameTime;
+      let previousFrameTime = 0;
+      function updateFrame(currentFrameTime: number) {
+        const delta = (currentFrameTime - previousFrameTime) / 1000;
+        previousFrameTime = currentFrameTime;
 
-      onRender && onRender(canvasRef.current, context.current, delta);
+        onRender && onRender(canvasRef.current, context.current, delta);
+        requestAnimationFrame(updateFrame);
+      }
       requestAnimationFrame(updateFrame);
     }
-    requestAnimationFrame(updateFrame);
+    init();
   }, []);
 
   useEffect(() => {
+    if (!hasInit) return;
+
     function handleResize() {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -58,7 +65,8 @@ function AutoResizeCanvas({ onRender, onInit, onResize }: Props) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [hasInit]);
+
   return (
     <canvas
       ref={canvasRef}

@@ -33,10 +33,15 @@ export interface PhysicsObject {
   readonly hidden: boolean;
 }
 
+export interface PhysicsImage extends PhysicsObject {
+  readonly image: HTMLImageElement;
+}
+
 export function createPhsyicsObject(
   world: b2World,
-  config: PhsyicsObjectConfig
-): PhysicsObject {
+  config: PhsyicsObjectConfig,
+  image?: HTMLImageElement
+): PhysicsObject | PhysicsImage {
   const body = world.CreateBody({
     position: {
       x: config.x,
@@ -68,6 +73,7 @@ export function createPhsyicsObject(
     height: config.height,
     hidden: config.hidden ? true : false,
     body: body,
+    image: image,
     shape: shape,
   };
 }

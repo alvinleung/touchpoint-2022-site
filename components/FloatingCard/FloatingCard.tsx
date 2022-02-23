@@ -10,26 +10,57 @@ import { getWorldSizeInfo, WorldSizeInfo } from "./PhysicsSimulationUtils";
 
 type Props = {};
 
+const PermissionText = {
+  ASK_PERMISSION: "Tap to enable gravity.",
+  ASK_AGAIN: "Please allow permission to enable gravity.",
+  NONE: "",
+};
+
 function FloatingCard({}: Props) {
   const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const worldRef = useRef() as MutableRefObject<b2World>;
   const worldObjectsRef = useRef() as MutableRefObject<any>;
+  const isTouch = useRef(false) as MutableRefObject<Boolean>;
+
+  const [permissionText, setPermissionText] = useState(
+    PermissionText.ASK_PERMISSION
+  );
 
   const mouseInputPos = useRef({ x: 0, y: 0 });
   const isMouseDown = useRef(false);
 
-  const handleMouseUp = (e: React.MouseEvent) => {
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isMouseDown.current = true;
+    isTouch.current = true;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
     isMouseDown.current = false;
   };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    mouseInputPos.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isTouch.current) {
+      isMouseDown.current = false;
+    }
+  };
   const handleMouseDown = (e: React.MouseEvent) => {
-    isMouseDown.current = true;
+    if (!isTouch.current) {
+      isMouseDown.current = true;
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    mouseInputPos.current = {
-      x: e.clientX,
-      y: e.clientY,
-    };
+    if (!isTouch.current) {
+      mouseInputPos.current = {
+        x: e.clientX,
+        y: e.clientY,
+      };
+    }
   };
 
   const screenToWorldPos = (wordSizeInfo: WorldSizeInfo, { x = 0, y = 0 }) => {
@@ -45,7 +76,7 @@ function FloatingCard({}: Props) {
     };
   };
 
-  const onInit = (
+  const onInit = async (
     canvas: HTMLCanvasElement,
     context: CanvasRenderingContext2D
   ) => {
@@ -53,7 +84,7 @@ function FloatingCard({}: Props) {
       window.innerWidth,
       window.innerHeight
     );
-    const [word, worldObjects] = initPhysicsSimulation({
+    const [word, worldObjects] = await initPhysicsSimulation({
       worldSizeInfo: initialWorldSizeInfo,
     });
     worldObjectsRef.current = worldObjects;
@@ -121,6 +152,8 @@ function FloatingCard({}: Props) {
         //@ts-ignore
         DeviceOrientationEvent.requestPermission()
           .then((permissionState) => {
+            setPermissionText(PermissionText.NONE);
+
             if (permissionState === "granted") {
               // window.addEventListener("devicemotion", () => {});
               window.addEventListener(
@@ -129,7 +162,7 @@ function FloatingCard({}: Props) {
                 true
               );
             } else {
-              alert("Permission Denied: Enable permission for phsyical effect");
+              setPermissionText(PermissionText.ASK_AGAIN);
             }
           })
           .catch((err) => {
@@ -147,7 +180,11 @@ function FloatingCard({}: Props) {
       onMouseMove={handleMouseMove}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
+      <div className="ml-4 mt-2 absolute top-0 left-0">{permissionText}</div>
       <AutoResizeCanvas
         onRender={onRender}
         onInit={onInit}

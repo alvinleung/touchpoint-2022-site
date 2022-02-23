@@ -46,9 +46,9 @@ function createMouseJoint(
   const mouseJointDef = new b2MouseJointDef();
   mouseJointDef.bodyA = ground.body;
   mouseJointDef.bodyB = box.body;
-  mouseJointDef.maxForce = 5000.0;
+  mouseJointDef.maxForce = 50000.0;
   mouseJointDef.damping = 1000;
-  mouseJointDef.stiffness = 5000;
+  mouseJointDef.stiffness = 50000;
 
   // the initial target is the body
   // can be other things too
