@@ -1,12 +1,24 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import React from "react";
-import { Intermission, TalkItem, TalkList } from "../components/TalkList";
-import TalkInformation from "../data/talks";
+import { EffectOverlay } from "../components/EffectOverlay";
+import { LandingEffect } from "../components/LandingEffect/LandingEffect";
+
+import { Curtains } from "react-curtains";
 
 const Home: NextPage = () => {
-  const intermissionIndex = 4;
+  const randomTextList = React.useMemo(() => {
+    const textList = [];
+    for (let i = 0; i < 100; i++) {
+      textList[i] = "test";
+    }
+    return textList;
+  }, []);
+
+  let deviceRatio = 1;
+  if (typeof window !== "undefined") {
+    deviceRatio = window.devicePixelRatio;
+  }
 
   return (
     <div>
@@ -16,23 +28,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        {/* <h1 className="mt-4 ml-8 text-small uppercase mb-64">Some title</h1> */}
-        <TalkList>
-          {TalkInformation.map(
-            ({ time, graduation, role, name, title }, index) => {
-              return (
-                <React.Fragment key={index}>
-                  {index === intermissionIndex && <Intermission />}
-                  <TalkItem time={time} graduation={graduation} role={role}>
-                    {`${name} “${title}”`}
-                  </TalkItem>
-                </React.Fragment>
-              );
-            }
-          )}
-        </TalkList>
-      </main>
+      <Curtains pixelRatio={deviceRatio}>
+        <main>
+          <LandingEffect></LandingEffect>
+          {randomTextList.map((text, index) => {
+            return <p key={index}>{text}</p>;
+          })}
+        </main>
+      </Curtains>
     </div>
   );
 };

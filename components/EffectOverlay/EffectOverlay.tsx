@@ -9,7 +9,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const { m4 } = twgl;
+import { m3 } from "./m3";
 
 export const EffectOverlay = ({ children }: Props) => {
   const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>;
@@ -28,9 +28,6 @@ export const EffectOverlay = ({ children }: Props) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // console.log(OVERLAY_FRAG);
-    // console.log(OVERLAY_VERT);
-
     const gl = canvas.getContext("webgl") as WebGLRenderingContext;
     const program = twgl.createProgramFromSources(gl, [
       OVERLAY_VERT,
@@ -39,8 +36,9 @@ export const EffectOverlay = ({ children }: Props) => {
     const programInfo = twgl.createProgramInfoFromProgram(gl, program);
 
     const arrays = {
-      aPosition: [-1, -1, 0, 1, -1, 0, -1, 1, 0, -1, 1, 0, 1, -1, 0, 1, 1, 0],
+      a_position: [-1, -1, 0, 1, -1, 0, -1, 1, 0, -1, 1, 0, 1, -1, 0, 1, 1, 0],
     };
+
     const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
 
     function update(time: number) {
@@ -52,10 +50,10 @@ export const EffectOverlay = ({ children }: Props) => {
       gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
       const uniforms = {
-        uTime: time * 0.001,
-        uResolution: [gl.canvas.width, gl.canvas.height],
-        uMouse: [mousePos.current.x, mousePos.current.y],
-        uMatrix: m4.translation([-1, -1, 0]),
+        u_time: time * 0.001,
+        u_resolution: [gl.canvas.width, gl.canvas.height],
+        u_mouse: [mousePos.current.x, mousePos.current.y],
+        u_scroll: window.scrollY,
       };
 
       gl.useProgram(programInfo.program);
