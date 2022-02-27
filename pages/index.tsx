@@ -6,6 +6,7 @@ import { LandingEffect } from "../components/LandingEffect/LandingEffect";
 import { Curtains } from "react-curtains";
 import LandingHero from "../components/LandingHero/LandingHero";
 import Nav from "../components/Nav/Nav";
+import InfoBar from "../components/InfoBar/InfoBar";
 
 const Home: NextPage = () => {
   const randomTextList = React.useMemo(() => {
@@ -31,6 +32,10 @@ const Home: NextPage = () => {
 
       <Curtains pixelRatio={deviceRatio}>
         <Nav />
+        <InfoBar>
+          TALKS @ SFU SRYE (02/23/22) from 9:00AM — 1:00PM / 10285 University
+          Dr, Surrey, BC
+        </InfoBar>
         <main>
           <LandingHero />
         </main>

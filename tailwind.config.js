@@ -33,6 +33,9 @@ module.exports = {
     },
 
     extend: {
+      colors: {
+        "accent-red": "#F02828",
+      },
       fontSize: {
         small: "24px",
         medium: "60px",
