@@ -73,7 +73,10 @@ const Home: NextPage = () => {
               </div>
             </ContentGroup>
             <ContentGroup>
-              <ContentGroupLabel>Applications</ContentGroupLabel>
+              <ContentGroupLabel>
+                Applications{" "}
+                <span className="ml-14 font-sans">01/01/22 — 01/02/22</span>
+              </ContentGroupLabel>
               <BigText>
                 Companies will be conducting 25 minute interviews with SIAT
                 students and alumni on Month Day as part of Touchpoint 2022.
