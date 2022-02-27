@@ -11,10 +11,10 @@ type Props = {
 const Button = ({ children, href, huge, noDescender }: Props) => {
   return (
     <motion.a
-      className={`inline-block font-script no-underline border border-black ${
+      className={`inline-block font-script no-underline bg-white border border-black ${
         huge ? "text-[11vw]" : ""
-      } pl-[.16em] pr-[.35em] pt-[.20em] ${
-        noDescender ? "pb-[.00em]" : "pb-[.12em]"
+      } pl-[.16em] pr-[.35em] pt-[.25em] ${
+        noDescender ? "pb-[0em]" : "pb-[.14em]"
       } tracking-tighter leading-none`}
       href={href || "#"}
       whileHover={{
