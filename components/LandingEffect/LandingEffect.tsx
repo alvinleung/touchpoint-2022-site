@@ -133,7 +133,10 @@ export function LandingEffect({ children }) {
       transparent={true}
       renderOrder={0}
     >
-      <div ref={planeMeasurementRef}>
+      <div
+        ref={planeMeasurementRef}
+        className="w-screen h-screen flex flex-col"
+      >
         <CheckerContext.Provider
           value={{
             uniforms: checkerUniforms,
