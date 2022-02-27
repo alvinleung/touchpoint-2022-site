@@ -3,7 +3,7 @@ import React from "react";
 type Props = {};
 
 const NavLink = ({ children, href }) => (
-  <a href={href} className="text-small no-underline mr-8 text-black">
+  <a href={href} className="text-tiny no-underline mr-8 text-black">
     {children}
   </a>
 );

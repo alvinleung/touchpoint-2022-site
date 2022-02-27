@@ -5,7 +5,7 @@ type Props = { children: React.ReactNode };
 const InfoBar = ({ children }: Props) => {
   return (
     <motion.div
-      className="fixed bottom-0 text-small bg-accent-red border-t border-black w-full overflow-hidden z-40"
+      className="fixed bottom-0 text-tiny bg-accent-red border-t border-black w-full overflow-hidden z-40"
       initial={{ y: "100%" }}
       animate={{
         y: "0%",
@@ -16,7 +16,7 @@ const InfoBar = ({ children }: Props) => {
       }}
     >
       <motion.div
-        className="my-1"
+        className="my-1 whitespace-nowrap"
         initial={{ x: 1000 }}
         animate={{
           x: -1000,

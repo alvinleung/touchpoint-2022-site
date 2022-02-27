@@ -12,9 +12,9 @@ body {
 }
 
 a {
-  color: #f02828;
+  /* color: #f02828; */
   text-decoration: underline;
-  text-underline-offset: 0.02vh;
+  text-underline-offset: 0.1em;
   text-decoration-thickness: 0.02em;
 }
 

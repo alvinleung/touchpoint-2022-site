@@ -37,9 +37,10 @@ module.exports = {
         "accent-red": "#F02828",
       },
       fontSize: {
-        small: "24px",
-        medium: "60px",
-        big: "100px",
+        tiny: "24px",
+        small: "35px",
+        medium: ["60px", { letterSpacing: "-0.05em", lineHeight: "1em" }],
+        big: ["100px", { letterSpacing: "-0.05em", lineHeight: ".9em" }],
         "huge-script": "348px",
         // "fluid-medium": [
         //   getResponsiveValue(screens["md"], screens["2xl"], 22, 50),
@@ -55,6 +56,8 @@ module.exports = {
         "document-top": "2rem",
       },
       padding: {
+        "document-side": "5vw",
+        "document-top": "2rem",
         "fluid-medium": ".2em",
         "fluid-small": ".2em",
       },
