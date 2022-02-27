@@ -5,6 +5,7 @@ import { LandingEffect } from "../components/LandingEffect/LandingEffect";
 
 import { Curtains } from "react-curtains";
 import LandingHero from "../components/LandingHero/LandingHero";
+import Nav from "../components/Nav/Nav";
 
 const Home: NextPage = () => {
   const randomTextList = React.useMemo(() => {
@@ -29,6 +30,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Curtains pixelRatio={deviceRatio}>
+        <Nav />
         <main>
           <LandingHero />
         </main>

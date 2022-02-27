@@ -1,36 +1,46 @@
 import React from "react";
 
 type Props = {
-  children: String;
+  children: React.ReactNode;
   left?: number;
   right?: number;
   top?: number;
   bottom?: number;
+  column?: boolean;
+  row?: boolean;
 };
 
-const InfoBlock = ({ children, left, top, right, bottom }: Props) => {
-  const hasPosition =
+const InfoBlockGroup = ({
+  children,
+  left,
+  top,
+  right,
+  bottom,
+  column,
+}: Props) => {
+  const isRoot =
     typeof left !== "undefined" ||
     typeof top !== "undefined" ||
     typeof right !== "undefined" ||
     typeof bottom !== "undefined"
-      ? true
-      : false;
+      ? false
+      : true;
 
   return (
     <div
       style={{
-        position: hasPosition ? "absolute" : "relative",
+        position: isRoot ? "relative" : "absolute",
         left: typeof top !== "undefined" ? `${left}%` : undefined,
         bottom: typeof bottom !== "undefined" ? `${bottom}%` : undefined,
         right: typeof right !== "undefined" ? `${right}%` : undefined,
         top: typeof top !== "undefined" ? `${top}%` : undefined,
+        flexDirection: column ? "column" : "row",
       }}
-      className="absolute bg-black text-white border-2 border-white text-fluid-medium px-fluid-medium py-fluid-small"
+      className={`flex flex-grow ${isRoot ? "mx-2 md:mx-document-side" : ""}`}
     >
       {children}
     </div>
   );
 };
 
-export default InfoBlock;
+export default InfoBlockGroup;
