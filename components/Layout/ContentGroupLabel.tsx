@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  children: React.ReactChild;
+  children: React.ReactNode;
 };
 
 const ContentGroupLabel = ({ children }: Props) => {
