@@ -119,12 +119,12 @@ void main() {
   // big noise
   vec2 noiseScaleBig = vec2(2.0/100.0);
   vec2 noiseOffsetBig = uNoiseOffset;
-  float whiteSpaceFactor = 0.01;
+  float whiteSpaceFactor = 0.04;
   float noiseInfluenceBig = noiseChecker(currentCell, noiseScaleBig, noiseOffsetBig) - whiteSpaceFactor;
 
 
   // to control how cluster the form look
-  float mixFactor = .65;
+  float mixFactor = .7;
   float mixedCheckerInfluence = mix(noiseInfluenceSmall, noiseInfluenceBig, mixFactor);
 
   // ==============================================
