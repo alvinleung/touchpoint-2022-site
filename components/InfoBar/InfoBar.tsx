@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { AnimationConfig } from "../AnimationConfig";
 
 type Props = { children: React.ReactNode };
 const InfoBar = ({ children }: Props) => {
@@ -10,8 +11,8 @@ const InfoBar = ({ children }: Props) => {
       animate={{
         y: "0%",
         transition: {
-          duration: 0.5,
-          ease: [0.595, 0.005, 0.175, 1.005],
+          duration: AnimationConfig.NORMAL,
+          ease: AnimationConfig.EASING,
         },
       }}
     >

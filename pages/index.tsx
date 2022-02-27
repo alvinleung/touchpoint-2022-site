@@ -11,6 +11,8 @@ import Section from "../components/Layout/Section";
 import BigText from "../components/Layout/BigText";
 import ContentGroupLabel from "../components/Layout/ContentGroupLabel";
 import ContentGroup from "../components/Layout/ContentGroup";
+import Button from "../components/Button/Button";
+import ExternalLink from "../components/ExternalLink/ExternalLink";
 
 const Home: NextPage = () => {
   const randomTextList = React.useMemo(() => {
@@ -66,7 +68,7 @@ const Home: NextPage = () => {
             </ContentGroup>
           </Section>
           <Section>
-            <ContentGroup>
+            <ContentGroup smallPadding>
               <ContentGroupLabel>Interviews With</ContentGroupLabel>
               <div className="text-small">
                 ARITZIA, AXIOM ZEN, DOSSIER, IAOMOTA, IBM, SAP, UBER
@@ -81,6 +83,11 @@ const Home: NextPage = () => {
                 Companies will be conducting 25 minute interviews with SIAT
                 students and alumni on Month Day as part of Touchpoint 2022.
               </BigText>
+              <div className="my-12">
+                <Button href="#" huge>
+                  Apply Here
+                </Button>
+              </div>
               <BigText>
                 Applications close on Sunday, January 27th at 11:59PM.
               </BigText>
@@ -88,7 +95,7 @@ const Home: NextPage = () => {
           </Section>
           <Section>
             <BigText>
-              <a href="#">2020 Site</a>
+              <ExternalLink href="#">2020 Site</ExternalLink>
             </BigText>
           </Section>
         </main>
