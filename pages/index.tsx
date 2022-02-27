@@ -59,7 +59,7 @@ const Home: NextPage = () => {
                 <a href="mailto:info@touchpoint.com">info@touchpoint.com</a>
               </BigText>
             </ContentGroup>
-            <ContentGroup>
+            <ContentGroup noPadding>
               <ContentGroupLabel>Location</ContentGroupLabel>
               <BigText>
                 <div>SFU Surrey, SYRE Building 10285</div>
@@ -74,7 +74,7 @@ const Home: NextPage = () => {
                 ARITZIA, AXIOM ZEN, DOSSIER, IAOMOTA, IBM, SAP, UBER
               </div>
             </ContentGroup>
-            <ContentGroup>
+            <ContentGroup noPadding>
               <ContentGroupLabel>
                 Applications{" "}
                 <span className="ml-14 font-sans">01/01/22 — 01/02/22</span>
