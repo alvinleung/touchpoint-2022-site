@@ -8,6 +8,7 @@ uniform float uTime;
 uniform float uCursorSize;
 uniform vec2 uResolution;
 uniform vec2 uMouse;
+uniform vec2 uNoiseOffset;
  
 // check size under 1920, 1080
 
@@ -112,12 +113,12 @@ void main() {
 
   // detial noise
   vec2 noiseScaleSmall = vec2(20.0/100.0);
-  vec2 noiseOffsetSmall = vec2(0,time*2.0+3.0);
+  vec2 noiseOffsetSmall = uNoiseOffset;
   float noiseInfluenceSmall = noiseChecker(currentCell, noiseScaleSmall, noiseOffsetSmall);
   
   // big noise
-  vec2 noiseScaleBig = vec2(3.0/100.0);
-  vec2 noiseOffsetBig = vec2(0,time+3.0);
+  vec2 noiseScaleBig = vec2(2.0/100.0);
+  vec2 noiseOffsetBig = uNoiseOffset;
   float whiteSpaceFactor = 0.01;
   float noiseInfluenceBig = noiseChecker(currentCell, noiseScaleBig, noiseOffsetBig) - whiteSpaceFactor;
 

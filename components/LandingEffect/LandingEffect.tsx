@@ -41,6 +41,11 @@ export function LandingEffect({ children }) {
       type: "2f",
       value: new Vec2(0, 0),
     },
+    noiseOffset: {
+      name: "uNoiseOffset",
+      type: "2f",
+      value: new Vec2(0, 1),
+    },
   });
 
   // State update
@@ -77,6 +82,12 @@ export function LandingEffect({ children }) {
 
     plane.uniforms.cursorSize.value = cursorSize.current;
     plane.uniforms.mouse.value = nextMouseCoords;
+
+    const mouseXDirection =
+      -(mousePos.current.x / window.innerWidth - 0.5) * 0.1;
+    const backgroundVelocity = new Vec2(mouseXDirection, 0.01);
+
+    plane.uniforms.noiseOffset.value.add(backgroundVelocity);
 
     plane.uniforms.resolution.value.set(
       checkerUniforms.current.resolution.value.x,
