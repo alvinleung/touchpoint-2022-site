@@ -20,4 +20,5 @@ module.exports = {
       },
     },
   },
+  plugins: [require("@borisk47/tailwindcss-fluidify")],
 };
