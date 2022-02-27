@@ -14,12 +14,14 @@ const LandingHero = (props: Props) => {
       <div className="h-24"></div>
       <img src="wordmark.svg" className="mx-6 lg:mx-document-side" />
       <div className="relative flex-grow mx-6 -mt-[1.2%] lg:mx-document-side text-fluid-medium">
+        {/* (left) date group */}
         <div className="absolute flex flex-col translate-x-[12.5%]">
           <div className={block + "mr-auto border-b-0 z-10 pb-0"}>
             {"01/01/2020"}
           </div>
           <div className={block + "mr-auto mt-[-2px] z-0"}>9:00AM — 3:00PM</div>
         </div>
+        {/* (right) location group */}
         <div className="absolute flex flex-col right-0">
           <div className={block + "z-10"}>
             13450 102 Ave Unit 110, Surrey, BC

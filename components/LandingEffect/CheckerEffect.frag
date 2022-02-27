@@ -12,7 +12,7 @@ uniform vec2 uMouse;
 // check size under 1920, 1080
 
 // the constant check size
-const float CHECK_SIZE_PIXEL = 8.0;
+const float CHECK_SIZE_PIXEL = 10.0;
 
 // check size for screen space
 float CHECK_SIZE = CHECK_SIZE_PIXEL * 4.0 / uResolution.x;
@@ -112,13 +112,14 @@ void main() {
 
   // detial noise
   vec2 noiseScaleSmall = vec2(20.0/100.0);
-  vec2 noiseOffsetSmall = vec2(0,0);
+  vec2 noiseOffsetSmall = vec2(0,time*2.0+3.0);
   float noiseInfluenceSmall = noiseChecker(currentCell, noiseScaleSmall, noiseOffsetSmall);
   
   // big noise
-  vec2 noiseScaleBig = vec2(2.6/100.0);
-  vec2 noiseOffsetBig = vec2(0,time);
-  float noiseInfluenceBig = noiseChecker(currentCell, noiseScaleBig, noiseOffsetBig);
+  vec2 noiseScaleBig = vec2(3.0/100.0);
+  vec2 noiseOffsetBig = vec2(0,time+3.0);
+  float whiteSpaceFactor = 0.01;
+  float noiseInfluenceBig = noiseChecker(currentCell, noiseScaleBig, noiseOffsetBig) - whiteSpaceFactor;
 
 
   // to control how cluster the form look
@@ -144,18 +145,16 @@ void main() {
   // gl_FragColor = vec4(vec2(noiseInfluence), 1.0, 1.0); 
   float checkerMouseComposite = mix(mixedCheckerInfluence, 1.0, mouseNoiseComposite);
   
-  float color = checkerColor > 0.5 ? mixedCheckerInfluence: 0.0;
-
+  float color = checkerColor < 0.5 ? mixedCheckerInfluence: 0.0;
   float polarizedColor = 1.0-polarizeValue(color, .1);
-
-  // only render black pixel
-  gl_FragColor = vec4(vec3(polarizedColor),1.0-polarizedColor);
-  return;
   
+    gl_FragColor = vec4(vec3(polarizedColor),1.0-polarizedColor);
+
+    return;
   // within the mouse permimeter
   if(mouseNoiseComposite < 1.0) {
-    gl_FragColor = color == 0.0? vec4(color, 0.0, 0.0, 1.0): vec4(0.0);
-  } else { 
-    gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+    // gl_FragColor = vec4(1.0,0.0,0.0, 1.0);
+  } else {
+    gl_FragColor = vec4(vec3(polarizedColor),1.0-polarizedColor);
   }
 }
