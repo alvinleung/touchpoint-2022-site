@@ -12,7 +12,7 @@ uniform vec2 uMouse;
 // check size under 1920, 1080
 
 // the constant check size
-const float CHECK_SIZE_PIXEL = 6.0;
+const float CHECK_SIZE_PIXEL = 8.0;
 
 // check size for screen space
 float CHECK_SIZE = CHECK_SIZE_PIXEL * 4.0 / uResolution.x;
@@ -79,6 +79,16 @@ vec2 getCellPosition(ivec2 cell, float aspectRatio) {
   return vec2(float(cell.x) * CHECK_SIZE, float(cell.y) * CHECK_SIZE  / aspectRatio); 
 }
 
+float polarizeValue(float val, float threshold) {
+  return val > threshold ? 1.0: 0.0;
+}
+
+float noiseChecker(ivec2 currentCell, vec2 noiseScale, vec2 noiseOffset) {
+  vec2 noiseVector = vec2(currentCell)*noiseScale + noiseOffset;
+  float noiseInfluence = noise(noiseVector);
+  return noiseInfluence;
+}
+
 void main() {
 
   vec2 textureCoord = vTextureCoord;
@@ -96,11 +106,24 @@ void main() {
   vec2 currentCellPosition = getCellPosition(currentCell, aspectRatio);
   
   // make a rasterised noise base on the checkerboard pattern size
-  float noiseInfluence = noise(vec2(currentCell*50)/ 220.0);
+  // float timeFactor = noise(vec2(currentCell*20)/ 100.0) * .05;
+  float timeFactor = .005;
+  float time = uTime * timeFactor;
 
-  // make the noise influence look sharp
-  noiseInfluence = noiseInfluence * 1000.0;
+  // detial noise
+  vec2 noiseScaleSmall = vec2(20.0/100.0);
+  vec2 noiseOffsetSmall = vec2(0,0);
+  float noiseInfluenceSmall = noiseChecker(currentCell, noiseScaleSmall, noiseOffsetSmall);
   
+  // big noise
+  vec2 noiseScaleBig = vec2(2.6/100.0);
+  vec2 noiseOffsetBig = vec2(0,time);
+  float noiseInfluenceBig = noiseChecker(currentCell, noiseScaleBig, noiseOffsetBig);
+
+
+  // to control how cluster the form look
+  float mixFactor = .65;
+  float mixedCheckerInfluence = mix(noiseInfluenceSmall, noiseInfluenceBig, mixFactor);
 
   // ==============================================
   // Introduce mouse influence to the checker map
@@ -119,12 +142,17 @@ void main() {
   float mouseNoiseComposite = (mouseInfluence) * (1.0-noiseInfluence2* (0.9));
 
   // gl_FragColor = vec4(vec2(noiseInfluence), 1.0, 1.0); 
-  float checkerMouseComposite = mix(noiseInfluence, 1.0, mouseNoiseComposite);
-  float color = checkerColor > 0.5 ? checkerMouseComposite: 0.0;
-
-  // gl_FragColor = vec4(vec3(color), 1.0);
-  // return;
+  float checkerMouseComposite = mix(mixedCheckerInfluence, 1.0, mouseNoiseComposite);
   
+  float color = checkerColor > 0.5 ? mixedCheckerInfluence: 0.0;
+
+  float polarizedColor = 1.0-polarizeValue(color, .1);
+
+  // only render black pixel
+  gl_FragColor = vec4(vec3(polarizedColor),1.0-polarizedColor);
+  return;
+  
+  // within the mouse permimeter
   if(mouseNoiseComposite < 1.0) {
     gl_FragColor = color == 0.0? vec4(color, 0.0, 0.0, 1.0): vec4(0.0);
   } else { 
