@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
-import { EffectOverlay } from "../components/EffectOverlay";
 import { LandingEffect } from "../components/LandingEffect/LandingEffect";
 
 import { Curtains } from "react-curtains";
+import LandingHero from "../components/LandingHero/LandingHero";
 
 const Home: NextPage = () => {
   const randomTextList = React.useMemo(() => {
@@ -30,10 +30,7 @@ const Home: NextPage = () => {
 
       <Curtains pixelRatio={deviceRatio}>
         <main>
-          <LandingEffect></LandingEffect>
-          {randomTextList.map((text, index) => {
-            return <p key={index}>{text}</p>;
-          })}
+          <LandingHero />
         </main>
       </Curtains>
     </div>

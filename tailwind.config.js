@@ -14,7 +14,10 @@ module.exports = {
         big: "100px",
         "huge-script": "348px",
       },
+      margin: {
+        "document-side": "4rem",
+        "document-top": "2rem",
+      },
     },
   },
-  plugins: [],
 };
