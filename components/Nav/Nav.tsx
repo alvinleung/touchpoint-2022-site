@@ -4,7 +4,11 @@ import Button from "../Button/Button";
 type Props = {};
 
 const NavLink = ({ children, href }) => (
-  <a href={href} className="text-tiny no-underline mr-8 text-black">
+  <a
+    href={href}
+    className="text-tiny no-underline mr-8 text-black flex flex-row items-center"
+  >
+    <div className="rounded-full w-[.5em] h-[.5em] border border-black mr-[.3em]"></div>
     {children}
   </a>
 );
