@@ -84,7 +84,7 @@ export function LandingEffect({ children }) {
     plane.uniforms.mouse.value = nextMouseCoords;
 
     const mouseXDirection =
-      -(mousePos.current.x / window.innerWidth - 0.5) * 0.1;
+      -(mousePos.current.x / window.innerWidth - 0.5) * 0.05;
     const backgroundVelocity = new Vec2(mouseXDirection, 0.01);
 
     plane.uniforms.noiseOffset.value.add(backgroundVelocity);
