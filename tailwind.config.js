@@ -36,23 +36,18 @@ module.exports = {
       fontSize: {
         // tiny: "24px",
         tiny: [
-          getResponsiveValue(screens["sm"], screens["xl"], 16, 24),
-          { letterSpacing: "-0.05em", lineHeight: "1.1em" },
+          getResponsiveValue(screens["sm"], screens["xl"], 20, 24),
+          { letterSpacing: "-0.05em", lineHeight: "1.2em" },
         ],
         // small: "35px",
         small: [
-          getResponsiveValue(screens["sm"], screens["xl"], 16, 35),
+          getResponsiveValue(screens["sm"], screens["xl"], 20, 35),
           {
-            letterSpacing: getResponsiveValue(
-              screens["sm"],
-              screens["xl"],
-              16 * 0.0,
-              35 * -0.05
-            ),
+            letterSpacing: "-0.05em",
             lineHeight: getResponsiveValue(
               screens["sm"],
               screens["xl"],
-              16 * 1.2,
+              16 * 1.5,
               35 * 0.9
             ),
           },
