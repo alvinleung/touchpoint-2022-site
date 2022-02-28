@@ -37,10 +37,26 @@ module.exports = {
         "accent-red": "#F02828",
       },
       fontSize: {
-        tiny: "24px",
-        small: "35px",
-        medium: ["60px", { letterSpacing: "-0.05em", lineHeight: "1em" }],
-        big: ["100px", { letterSpacing: "-0.05em", lineHeight: ".9em" }],
+        // tiny: "24px",
+        tiny: [
+          getResponsiveValue(screens["sm"], screens["xl"], 16, 24),
+          { letterSpacing: "-0.05em", lineHeight: ".9em" },
+        ],
+        // small: "35px",
+        small: [
+          getResponsiveValue(screens["sm"], screens["xl"], 16, 35),
+          { letterSpacing: "-0.05em", lineHeight: ".9em" },
+        ],
+        // medium: ["60px", { letterSpacing: "-0.05em", lineHeight: "1em" }],
+        medium: [
+          getResponsiveValue(screens["sm"], screens["xl"], 20, 60),
+          { letterSpacing: "-0.05em", lineHeight: ".9em" },
+        ],
+        // big: ["100px", { letterSpacing: "-0.05em", lineHeight: ".9em" }],
+        big: [
+          getResponsiveValue(screens["sm"], screens["xl"], 24, 100),
+          { letterSpacing: "-0.05em", lineHeight: ".9em" },
+        ],
         "huge-script": "348px",
         // "fluid-medium": [
         //   getResponsiveValue(screens["md"], screens["2xl"], 22, 50),
@@ -51,6 +67,7 @@ module.exports = {
           { letterSpacing: "-0.05em", lineHeight: "1em" },
         ],
       },
+
       margin: {
         "document-side": "5vw",
         "document-top": "2rem",

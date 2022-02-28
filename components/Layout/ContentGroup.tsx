@@ -9,14 +9,14 @@ type Props = {
 const ContentGroup = ({ children, smallPadding, noPadding }: Props) => {
   const padding = (() => {
     if (smallPadding) {
-      return "mb-12";
+      return "mb-[.75em]";
     }
     if (noPadding) {
       return "mb-0";
     }
 
     //default
-    return "mb-20";
+    return "mb-[1em]";
   })();
 
   return <div className={padding}>{children}</div>;
