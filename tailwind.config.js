@@ -9,10 +9,7 @@ const screens = {
 };
 
 // Takes the viewport widths in pixels and the font sizes in rem
-function getResponsiveValue(minWidthPx, maxWidthPx, minFontSize, maxFontSize) {
-  const minWidth = minWidthPx;
-  const maxWidth = maxWidthPx;
-
+function getResponsiveValue(minWidth, maxWidth, minFontSize, maxFontSize) {
   const slope = (maxFontSize - minFontSize) / (maxWidth - minWidth);
   const yAxisIntersection = -minWidth * slope + minFontSize;
 
@@ -40,22 +37,58 @@ module.exports = {
         // tiny: "24px",
         tiny: [
           getResponsiveValue(screens["sm"], screens["xl"], 16, 24),
-          { letterSpacing: "-0.05em", lineHeight: ".9em" },
+          { letterSpacing: "-0.05em", lineHeight: "1.1em" },
         ],
         // small: "35px",
         small: [
           getResponsiveValue(screens["sm"], screens["xl"], 16, 35),
-          { letterSpacing: "-0.05em", lineHeight: ".9em" },
+          {
+            letterSpacing: getResponsiveValue(
+              screens["sm"],
+              screens["xl"],
+              16 * 0.0,
+              35 * -0.05
+            ),
+            lineHeight: getResponsiveValue(
+              screens["sm"],
+              screens["xl"],
+              16 * 1.2,
+              35 * 0.9
+            ),
+          },
         ],
         // medium: ["60px", { letterSpacing: "-0.05em", lineHeight: "1em" }],
         medium: [
-          getResponsiveValue(screens["sm"], screens["xl"], 20, 60),
-          { letterSpacing: "-0.05em", lineHeight: ".9em" },
+          getResponsiveValue(screens["sm"], screens["xl"], 24, 60),
+          {
+            letterSpacing: "-0.05em",
+            lineHeight: getResponsiveValue(
+              screens["sm"],
+              screens["xl"],
+              24 * 1.0,
+              60 * 0.9
+            ),
+          },
         ],
         // big: ["100px", { letterSpacing: "-0.05em", lineHeight: ".9em" }],
         big: [
-          getResponsiveValue(screens["sm"], screens["xl"], 24, 100),
-          { letterSpacing: "-0.05em", lineHeight: ".9em" },
+          getResponsiveValue(screens["sm"], screens["xl"], 30, 100),
+          {
+            letterSpacing: "-0.05em",
+            // letterSpacing: getResponsiveValue(
+            //   screens["sm"],
+            //   screens["xl"],
+            //   30 * -0.05,
+            //   100 * -0.05
+            // ),
+            // from 1.1em to 0.9em when scaling up
+            lineHeight: getResponsiveValue(
+              screens["sm"],
+              screens["xl"],
+              30 * 0.95,
+              100 * 0.9
+            ),
+          },
         ],
         "huge-script": "348px",
         // "fluid-medium": [
