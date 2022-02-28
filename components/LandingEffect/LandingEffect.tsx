@@ -46,12 +46,21 @@ export function LandingEffect({ children }) {
       type: "2f",
       value: new Vec2(0, 1),
     },
+    checkerSize: {
+      name: "uCheckerSize",
+      type: "1f",
+      value: 10,
+    },
   });
 
   // State update
   const onRender = (plane) => {
     // update time value in the plane
     plane.uniforms.time.value++;
+
+    // plane.uniforms.checkerSize.value = Math.floor(
+    //   window.innerWidth * CHECKER_SCALE_FACTOR
+    // );
 
     // calculate the mouse position
     const nextMouseCoords = plane.mouseToPlaneCoords(mousePos.current);

@@ -13,10 +13,10 @@ uniform vec2 uNoiseOffset;
 // check size under 1920, 1080
 
 // the constant check size
-const float CHECK_SIZE_PIXEL = 10.0;
+uniform float uCheckerSize;
 
 // check size for screen space
-float CHECK_SIZE = CHECK_SIZE_PIXEL * 4.0 / uResolution.x;
+float checkSizeScreenSpace = uCheckerSize * 4.0 / uResolution.x;
 
 // Noise
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -54,8 +54,8 @@ float noise(vec3 P) {
 float noise(vec2 P) { return noise(vec3(P, 0.0)); }
 
 float getCheckerColor(vec3 vertexPosition, float aspectRatio) { 
-  float x_thing = step(CHECK_SIZE / 2.0, mod(vertexPosition.x, CHECK_SIZE));
-  float y_thing = step(CHECK_SIZE / aspectRatio / 2.0, mod(vertexPosition.y, CHECK_SIZE / aspectRatio));
+  float x_thing = step(checkSizeScreenSpace / 2.0, mod(vertexPosition.x, checkSizeScreenSpace));
+  float y_thing = step(checkSizeScreenSpace / aspectRatio / 2.0, mod(vertexPosition.y, checkSizeScreenSpace / aspectRatio));
 
   bool condition1 = x_thing > 0.5 && y_thing < 0.5;
   bool condition2 = x_thing < 0.5 && y_thing > 0.5;
@@ -71,13 +71,13 @@ float getCheckerColor(vec3 vertexPosition, float aspectRatio) {
 }
 
 ivec2 getCell(vec2 screenpos, float aspectRatio) {
-  int col = int(screenpos.x * 2.0 / (CHECK_SIZE));
-  int row = int(screenpos.y * 2.0 / (CHECK_SIZE / aspectRatio));
+  int col = int(screenpos.x * 2.0 / (checkSizeScreenSpace));
+  int row = int(screenpos.y * 2.0 / (checkSizeScreenSpace / aspectRatio));
   return ivec2(col, row); 
 }
 
 vec2 getCellPosition(ivec2 cell, float aspectRatio) {
-  return vec2(float(cell.x) * CHECK_SIZE, float(cell.y) * CHECK_SIZE  / aspectRatio); 
+  return vec2(float(cell.x) * checkSizeScreenSpace, float(cell.y) * checkSizeScreenSpace  / aspectRatio); 
 }
 
 float polarizeValue(float val, float threshold) {
@@ -132,7 +132,7 @@ void main() {
   // ==============================================
 
   // mouse size in pixel
-  float mouseSize = CHECK_SIZE_PIXEL * uCursorSize; 
+  float mouseSize = uCheckerSize * uCursorSize; 
   float noiseInfluence2 = noise(vec2(currentCell*100)/ 220.0+5.0);
   // make the noise influence look sharp
   noiseInfluence2 = noiseInfluence2;
