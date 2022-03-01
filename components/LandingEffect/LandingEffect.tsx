@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useContext, MutableRefObject } from "react";
 import { Vec2 } from "curtainsjs";
 import { Plane } from "react-curtains";
+import { screens } from "../../data/screens";
 
 //@ts-ignore
 import MouseCheckerShaderFrag from "./CheckerEffect.frag";
@@ -98,6 +99,9 @@ export function LandingEffect({ children }) {
 
     plane.uniforms.noiseOffset.value.add(backgroundVelocity);
 
+    plane.uniforms.checkerSize.value =
+      checkerUniforms.current.checkerSize.value;
+
     plane.uniforms.resolution.value.set(
       checkerUniforms.current.resolution.value.x,
       checkerUniforms.current.resolution.value.y
@@ -122,6 +126,11 @@ export function LandingEffect({ children }) {
         viewportResolution.x,
         viewportResolution.y
       );
+
+      const checkSize = viewportResolution.x * 0.015;
+      const checkSizeClamped = clamp(checkSize, 0, 10); // max size as 10
+
+      checkerUniforms.current.checkerSize.value = checkSizeClamped;
     }
     resizeResolution();
     window.addEventListener("resize", resizeResolution);
