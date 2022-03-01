@@ -127,7 +127,7 @@ export function LandingEffect({ children }) {
         viewportResolution.y
       );
 
-      const checkSize = viewportResolution.x * 0.015;
+      const checkSize = viewportResolution.x * 0.01;
       const checkSizeClamped = clamp(checkSize, 0, 10); // max size as 10
 
       checkerUniforms.current.checkerSize.value = checkSizeClamped;
