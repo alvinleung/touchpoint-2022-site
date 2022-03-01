@@ -26,7 +26,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["Lausanne", "sans-serif"],
-      script: ["Kuenstler Script LT Std", "serif"],
+      script: ["Kuenstler-Script-LT-Std", "serif"],
     },
 
     extend: {
