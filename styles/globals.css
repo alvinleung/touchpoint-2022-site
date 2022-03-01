@@ -11,6 +11,10 @@ body {
   font-family: "Lausanne", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   /* color: #f02828; */
   text-decoration: underline;
