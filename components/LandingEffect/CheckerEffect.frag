@@ -91,6 +91,7 @@ float noiseChecker(ivec2 currentCell, vec2 noiseScale, vec2 noiseOffset) {
 }
 
 void main() {
+
   vec2 textureCoord = vTextureCoord;
   vec3 vertexPosition = vVertexPosition;
   float aspectRatio = uResolution.y / uResolution.x;
@@ -129,7 +130,6 @@ void main() {
   // ==============================================
   // Introduce mouse influence to the checker map
   // ==============================================
-
 
   // mouse size in pixel
   float mouseSize = uCheckerSize * uCursorSize; 
