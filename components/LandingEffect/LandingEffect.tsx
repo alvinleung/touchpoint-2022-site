@@ -18,6 +18,7 @@ export const useCheckerContext = () => useContext(CheckerContext);
 export function LandingEffect({ children }) {
   const mousePos = useRef(new Vec2(0, 0));
   const noiseOffset = useRef({ x: 0, y: 0 });
+  const checkerSize = useRef(10);
 
   // for webgl
   const programInfoRef = useRef<twgl.ProgramInfo>();
@@ -42,10 +43,8 @@ export function LandingEffect({ children }) {
     gl: WebGLRenderingContext,
     delta: number
   ) => {
-    const screenWidth = canvas.width;
-    const screenHeight = canvas.height;
-    const noiseXVel = -(mousePos.current.x / screenWidth - 0.5) * 0.05;
-    const noiseYVel = (mousePos.current.y / screenHeight - 0.5) * 0.05;
+    const noiseXVel = -(mousePos.current.x / canvas.width - 0.5) * 0.05;
+    const noiseYVel = (mousePos.current.y / canvas.height - 0.5) * 0.05;
     noiseOffset.current.y += delta * 0.001 + clamp(noiseYVel, -0.7, 0.4);
     noiseOffset.current.x += noiseXVel;
 
@@ -53,7 +52,7 @@ export function LandingEffect({ children }) {
       uResolution: [canvas.width, canvas.height],
       uMouse: [mousePos.current.x, mousePos.current.y],
       uNoiseOffset: [noiseOffset.current.x, noiseOffset.current.y],
-      uCheckerSize: 10,
+      uCheckerSize: checkerSize.current,
     };
 
     const programInfo = programInfoRef.current;
@@ -65,7 +64,12 @@ export function LandingEffect({ children }) {
     twgl.drawBufferInfo(gl, bufferInfo);
   };
 
-  const resize = (width: number, height: number) => {};
+  const resize = (width: number, height: number) => {
+    const checkSize = width * 0.01;
+    const checkSizeClamped = clamp(checkSize, 0, 10); // max size as 10
+
+    checkerSize.current = checkSizeClamped;
+  };
 
   useEffect(() => {
     function handleMouseMove(e) {
