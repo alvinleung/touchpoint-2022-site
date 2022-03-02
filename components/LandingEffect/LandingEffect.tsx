@@ -69,6 +69,11 @@ export function LandingEffect({ children }) {
     const checkSizeClamped = clamp(checkSize, 0, 10); // max size as 10
 
     checkerSize.current = checkSizeClamped;
+
+    mousePos.current = {
+      x: clamp(mousePos.current.x, 0, width),
+      y: clamp(mousePos.current.y, 0, height),
+    };
   };
 
   useEffect(() => {
@@ -94,29 +99,4 @@ export function LandingEffect({ children }) {
       {children}
     </div>
   );
-
-  // return (
-  //   <Plane
-  //     // plane init parameters
-  //     vertexShader={MouseCheckerShaderVert}
-  //     fragmentShader={MouseCheckerShaderFrag}
-  //     uniforms={checkerUniforms.current}
-  //     // plane events
-  //     onRender={onRender}
-  //     transparent={true}
-  //     renderOrder={0}
-  //   >
-  //     <div ref={planeMeasurementRef} className="w-full h-screen flex flex-col">
-  //       <CheckerContext.Provider
-  //         value={{
-  //           uniforms: checkerUniforms,
-  //           mousePos: mousePos,
-  //           showGlobalCursor: showGlobalCursor,
-  //         }}
-  //       >
-  //         {children}
-  //       </CheckerContext.Provider>
-  //     </div>
-  //   </Plane>
-  // );
 }
