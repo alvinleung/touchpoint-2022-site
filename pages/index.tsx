@@ -94,7 +94,7 @@ const Home: NextPage = () => {
                 Companies will be conducting 25 minute interviews with SIAT
                 students and alumni on Month Day as part of Touchpoint 2022.
               </BigText>
-              <div className="my-12">
+              <div className="my-[.75em]">
                 <Button href="#" huge>
                   Apply Here
                 </Button>
