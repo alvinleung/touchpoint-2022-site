@@ -56,6 +56,7 @@ const Nav = ({ children }: Props) => {
   // the section in view
   const [currentSection, setCurrentSection] = useState(NavSections[0]);
   // the dispalying section
+  const [isHovering, setIsHovering] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
   const selectionIndex = NavSections.indexOf(activeSection);
 
@@ -70,6 +71,7 @@ const Nav = ({ children }: Props) => {
       1000
     );
   }
+
   useEffect(() => {
     const handleWheel = () => {
       setIsJumpingToSection(false);
@@ -82,16 +84,17 @@ const Nav = ({ children }: Props) => {
   }, []);
 
   useEffect(() => {
-    if (isJumpingToSection) return;
+    if (isJumpingToSection || isHovering) return;
     setActiveSection(currentSection);
-  }, [currentSection, isJumpingToSection]);
+  }, [currentSection, isJumpingToSection, isHovering]);
 
   return (
     <>
       <nav className="mx-4 lg:mx-document-side z-[1000] h-24 fixed left-0 right-0 flex flex-row items-center align-center">
         <div
           className="flex flex-row"
-          onMouseLeave={() => setActiveSection(currentSection)}
+          onMouseLeave={() => setIsHovering(false)}
+          onMouseEnter={() => setIsHovering(true)}
         >
           {NavSections.map((navSection, i) => {
             const isHoveringSection = activeSection === navSection;
