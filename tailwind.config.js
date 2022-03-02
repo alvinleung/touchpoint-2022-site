@@ -106,7 +106,12 @@ module.exports = {
         "document-top": "2rem",
       },
       padding: {
-        "document-side": "7vw",
+        "document-side": getResponsiveValue(
+          screens["sm"],
+          screens["xl"],
+          24,
+          120
+        ),
         "document-top": "2rem",
         "fluid-medium": ".2em",
         "fluid-small": ".2em",
