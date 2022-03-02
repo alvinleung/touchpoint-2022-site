@@ -22,7 +22,7 @@ const ExternalLink = ({ children, href }: Props) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <span className="mr-[.5em]">{children}</span>{" "}
+      <span className="mr-[.25em]">{children}</span>{" "}
       <div className="h-[.72em] w-[.72em] overflow-hidden relative">
         <motion.img
           animate={{

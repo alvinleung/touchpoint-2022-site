@@ -48,7 +48,7 @@ module.exports = {
               screens["sm"],
               screens["xl"],
               16 * 1.5,
-              35 * 0.9
+              35 * 1
             ),
           },
         ],
@@ -97,11 +97,16 @@ module.exports = {
       },
 
       margin: {
-        "document-side": "5vw",
+        "document-side": getResponsiveValue(
+          screens["sm"],
+          screens["xl"],
+          24,
+          120
+        ),
         "document-top": "2rem",
       },
       padding: {
-        "document-side": "5vw",
+        "document-side": "7vw",
         "document-top": "2rem",
         "fluid-medium": ".2em",
         "fluid-small": ".2em",

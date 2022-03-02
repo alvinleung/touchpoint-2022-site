@@ -11,6 +11,11 @@ body {
   font-family: "Lausanne", sans-serif;
 }
 
+::selection {
+  /* background: #fff; */
+  background: #f02828;
+}
+
 html {
   scroll-behavior: smooth;
 }
