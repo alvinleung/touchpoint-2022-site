@@ -12,8 +12,8 @@ body {
 }
 
 ::selection {
-  /* background: #fff; */
-  background: #f02828;
+  color: #fff;
+  background-color: black;
 }
 
 html {

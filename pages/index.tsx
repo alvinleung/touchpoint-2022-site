@@ -76,13 +76,12 @@ const Home: NextPage = () => {
               <ContentGroupLabel>Interviews With</ContentGroupLabel>
               <div className="text-small w-3/4 uppercase mt-2">
                 {companies.map((company) => (
-                  <span className="inline-block border border-black px-2 py-1 mx-1 my-1 hover:invert hover:border-white bg-white ">
-                    <ExternalLink href="#">{company}</ExternalLink>
-                  </span>
+                  // <span className="inline-block border border-black px-2 py-1 mx-1 my-1 hover:invert hover:border-white bg-white ">
+                  <ExternalLink href="#" border>
+                    {company}
+                  </ExternalLink>
+                  // </span>
                 ))}
-
-                {/* All Purpose, Engine Digital, Invoke, Greenstone, Dossier,
-                  Rivaltech, SAP, Telus Digital */}
               </div>
             </ContentGroup>
             <ContentGroup noPadding>
