@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import React, { useEffect, useRef, useState } from "react";
 import { EffectOverlay } from "../components/EffectOverlay";
-import Nav from "../components/Nav/Nav";
+import { Nav } from "../components/Nav/Nav";
 import StretchyType from "../components/StretchyType/StretchyType";
 
 const Landing: NextPage = () => {
