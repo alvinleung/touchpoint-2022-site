@@ -1,18 +1,22 @@
 import React from "react";
+import { useMobileBreakpoint } from "../../hooks/useBreakpoint";
+import GetTicketsButton from "../Button/GetTicketsButton";
 import { LandingEffect } from "../LandingEffect/LandingEffect";
 
 type Props = {};
 
 const LandingHero = (props: Props) => {
+  const mobileBreakpoint = useMobileBreakpoint();
+
   const block =
-    "bg-black text-white border-2 border-white px-fluid-medium py-fluid-small ";
+    "bg-black text-white border sm:border-2 border-white px-fluid-medium py-fluid-small ";
 
   return (
     <LandingEffect>
       <div className="h-24"></div>
       <div className="mx-4 lg:mx-document-side">
         <img src="wordmark.svg" className="w-full" />
-        <div className="relative flex-grow -mt-[1.2%]  text-fluid-medium">
+        <div className="relative flex-grow -mt-[1.2%] text-fluid-medium">
           {/* (left) date group */}
           <div className="absolute flex flex-col -translate-y-[0%] translate-x-[12.5%]">
             <div className={block + "mr-auto border-b-0 z-10 pb-0"}>
@@ -39,6 +43,12 @@ const LandingHero = (props: Props) => {
             <div className={block + "mr-4"}>SPEAKERS TBA</div>
             {/* <div className={block + "mr-auto"}>4/02/2022</div> */}
           </div>
+        </div>
+      </div>
+
+      <div className="flex absolute left-0 right-0 w-[100%] bottom-[25vh]">
+        <div className="mx-auto text-[10vw]">
+          {!mobileBreakpoint && <GetTicketsButton />}
         </div>
       </div>
     </LandingEffect>

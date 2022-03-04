@@ -2,6 +2,12 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
 import { motion } from "framer-motion";
 import { AnimationConfig } from "../AnimationConfig";
+import {
+  breakpoints,
+  useBreakpoint,
+  useMobileBreakpoint,
+} from "../../hooks/useBreakpoint";
+import GetTicketsButton from "../Button/GetTicketsButton";
 
 type Props = {
   children: React.ReactNode;
@@ -62,6 +68,8 @@ const Nav = ({ children }: Props) => {
 
   const [isJumpingToSection, setIsJumpingToSection] = useState(false);
 
+  const mobileBreakpoint = useMobileBreakpoint();
+
   const jumpSectionTimer = useRef(null);
   function jumpToSection() {
     setIsJumpingToSection(true);
@@ -115,7 +123,7 @@ const Nav = ({ children }: Props) => {
           })}
         </div>
         <div className="ml-auto text-[30px]">
-          <Button noDescender>Get Tickets</Button>
+          {mobileBreakpoint && <GetTicketsButton />}
         </div>
       </nav>
       <NavContext.Provider value={{ currentSection, setCurrentSection }}>
