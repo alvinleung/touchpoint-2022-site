@@ -98,7 +98,7 @@ const Nav = ({ children }: Props) => {
 
   return (
     <>
-      <nav className="mx-4 lg:mx-document-side z-[1000] h-24 fixed left-0 right-0 flex flex-row items-center align-center">
+      <nav className="mx-4 2xl:mx-document-side z-[1000] h-24 fixed left-0 right-0 flex flex-row items-center align-center">
         <div
           className="flex flex-row"
           onMouseLeave={() => setIsHovering(false)}

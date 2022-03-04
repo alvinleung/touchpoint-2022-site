@@ -44,7 +44,7 @@ const Section = ({ children, id, noStyling }: Props) => {
     <section
       ref={sectionRef}
       id={id}
-      className="pb-[1.5em] pt-[1.5em] px-4 lg:px-document-side border-t border-black text-big"
+      className="pb-[1.5em] pt-[1.5em] px-4 2xl:px-document-side border-t border-black text-big"
     >
       {children}
     </section>

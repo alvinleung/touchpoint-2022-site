@@ -14,7 +14,7 @@ const LandingHero = (props: Props) => {
   return (
     <LandingEffect>
       <div className="h-24"></div>
-      <div className="mx-4 lg:mx-document-side">
+      <div className="mx-4 2xl:mx-document-side">
         <img src="wordmark.svg" className="w-full" />
         <div className="relative flex-grow -mt-[1.2%] text-fluid-medium">
           {/* (left) date group */}
