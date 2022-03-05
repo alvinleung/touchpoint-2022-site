@@ -20,16 +20,16 @@ const Home: NextPage = () => {
     deviceRatio = window.devicePixelRatio;
   }
 
-  const companies = [
-    "All Purpose",
-    "Engine Digital",
-    "Invoke",
-    "Greenstone",
-    "Dossier",
-    "Rivaltech",
-    "SAP",
-    "Telus Digital",
-  ];
+  const companies = {
+    "All Purpose": "https://www.allpurpose.io/",
+    "Engine Digital": "https://enginedigital.com/",
+    Invoke: "https://invokedigital.co/",
+    Greenstone: "https://www.greenstone.co/",
+    Dossier: "https://www.dossiercreative.com/",
+    Rivaltech: "https://www.rivaltech.com/",
+    SAP: "https://www.sap.com/",
+    "Telus Digital": "https://www.telus.com/en/digital",
+  };
 
   return (
     <div>
@@ -75,9 +75,9 @@ const Home: NextPage = () => {
             <ContentGroup mediumPadding>
               <ContentGroupLabel>Interviews With</ContentGroupLabel>
               <div className="text-small w-3/4 uppercase mt-2">
-                {companies.map((company) => (
+                {Object.keys(companies).map((company) => (
                   // <span className="inline-block border border-black px-2 py-1 mx-1 my-1 hover:invert hover:border-white bg-white ">
-                  <ExternalLink href="#" border>
+                  <ExternalLink href={companies[company]} border>
                     {company}
                   </ExternalLink>
                   // </span>

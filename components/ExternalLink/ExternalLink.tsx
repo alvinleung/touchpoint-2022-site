@@ -27,6 +27,7 @@ const ExternalLink = ({ children, href, border }: Props) => {
       className={border ? borderStyle : noBorderStyle}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      target="_blank"
     >
       <span className="mr-[.25em]">{children}</span>{" "}
       <div className="h-[.72em] w-[.72em] overflow-hidden relative">
