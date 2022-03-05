@@ -19,7 +19,9 @@ const LandingHero = (props: Props) => {
         <div className="relative flex-grow -mt-[1.2%] text-fluid-medium">
           {/* (left) date group */}
           <div className="absolute flex flex-col -translate-y-[0%] translate-x-[12.5%]">
-            <div className={block + "mr-auto border-b-0 z-10 pb-0"}>
+            <div
+              className={block + "mr-auto border-b-0 sm:border-b-0 z-10 pb-0"}
+            >
               {"04/02/2020"}
             </div>
             <div className={block + "mr-auto mt-[-2px] z-0"}>
