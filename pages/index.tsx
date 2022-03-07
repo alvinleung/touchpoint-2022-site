@@ -89,11 +89,9 @@ const Home: NextPage = () => {
               <ContentGroupLabel>Interviews With</ContentGroupLabel>
               <div className="text-small w-3/4 uppercase mt-2">
                 {Object.keys(companies).map((company) => (
-                  // <span className="inline-block border border-black px-2 py-1 mx-1 my-1 hover:invert hover:border-white bg-white ">
                   <ExternalLink href={companies[company]} border>
                     {company}
                   </ExternalLink>
-                  // </span>
                 ))}
               </div>
             </ContentGroup>
@@ -118,7 +116,7 @@ const Home: NextPage = () => {
                 </Button>
               </div>
               <BigText>
-                Applications close on Tuesday, March 15 at 5:00PM.
+                Applications close on Tuesday, March 22 at 5:00PM.
               </BigText>
             </ContentGroup>
           </Section>
