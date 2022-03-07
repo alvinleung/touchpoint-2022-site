@@ -13,6 +13,7 @@ const Button = ({ children, href, huge, noDescender, target }: Props) => {
   return (
     <motion.a
       target={target}
+      style={{ backgroundColor: "#FFF" }}
       className={`inline-block font-script no-underline bg-white border border-black ${
         huge ? "text-[11vw]" : ""
       } pl-[.16em] pr-[.35em] pt-[.25em] ${
