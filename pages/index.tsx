@@ -41,8 +41,7 @@ const Home: NextPage = () => {
 
       <Nav>
         <InfoBar>
-          TALKS @ SFU SRYE (02/23/22) from 9:00AM — 1:00PM / 10285 University
-          Dr, Surrey, BC
+          TALKS @ SFU SRYE (04/02/22) / 10285 University Dr, Surrey, BC
         </InfoBar>
         <main>
           <Section id="Conference" noStyling>
@@ -52,15 +51,15 @@ const Home: NextPage = () => {
             <ContentGroup>
               <ContentGroupLabel>About</ContentGroupLabel>
               <BigText>
-                Touchpoint Interaction Design Conference is a part of SFU and
-                the School of Interactive Art and Technology for the Interaction
-                Design Research Centre.
+                Hosted by SFU and the School of Interactive Arts and Technology,
+                Touchpoint is an annual design conference for Vancouver’s
+                creative community.
               </BigText>
             </ContentGroup>
             <ContentGroup>
               <ContentGroupLabel>Contact</ContentGroupLabel>
               <BigText>
-                <a href="mailto:info@touchpoint.com">info@touchpoint.com</a>
+                <a href="mailto:info@touchpointsfu.ca">info@touchpoint.com</a>
               </BigText>
             </ContentGroup>
             <ContentGroup noPadding>
@@ -90,16 +89,18 @@ const Home: NextPage = () => {
                 {/* <span className="ml-14 font-sans">01/01/22 — 01/02/22</span> */}
               </ContentGroupLabel>
               <BigText>
-                Companies will be conducting 25 minute interviews with SIAT
-                students and alumni on Month Day as part of Touchpoint 2022.
+                SIAT students and alumni are invited to interview at Touchpoint
+                2022 for an opportunity to intern at one of eight design
+                agencies and product companies in Vancouver. Interviews will be
+                held remotely between April 4-8, 2022.
               </BigText>
               <div className="my-[.75em]">
-                <Button href="#" huge>
+                <Button href="https://forms.gle/3214i8LRmPCpeMRbA" huge>
                   Apply Here
                 </Button>
               </div>
               <BigText>
-                Applications close on Sunday, January 27th at 11:59PM.
+                Applications close on Tuesday, March 15 at 5:00PM.
               </BigText>
             </ContentGroup>
           </Section>
