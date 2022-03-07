@@ -21,7 +21,6 @@ const Section = ({ children, id, noStyling }: Props) => {
     const observer = new IntersectionObserver((entries, observe) => {
       const entry = entries[0];
 
-      console.log(id + " " + entry.intersectionRatio);
       if (entry.isIntersecting) {
         setCurrentSection(id);
       }

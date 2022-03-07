@@ -95,7 +95,11 @@ const Home: NextPage = () => {
                 held remotely between April 4-8, 2022.
               </BigText>
               <div className="my-[.75em]">
-                <Button href="https://forms.gle/3214i8LRmPCpeMRbA" huge>
+                <Button
+                  href="https://forms.gle/3214i8LRmPCpeMRbA"
+                  huge
+                  target="_blank"
+                >
                   Apply Here
                 </Button>
               </div>
@@ -106,7 +110,9 @@ const Home: NextPage = () => {
           </Section>
           <Section>
             <BigText>
-              <ExternalLink href="#">2020 Site</ExternalLink>
+              <ExternalLink href="https://www.sfu.ca/idc/">
+                2020 Site
+              </ExternalLink>
             </BigText>
           </Section>
         </main>
