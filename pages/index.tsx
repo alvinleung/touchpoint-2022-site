@@ -59,7 +59,7 @@ const Home: NextPage = () => {
             <ContentGroup>
               <ContentGroupLabel>Contact</ContentGroupLabel>
               <BigText>
-                <a href="mailto:info@touchpointsfu.ca">info@touchpoint.com</a>
+                <a href="mailto:info@touchpointsfu.ca">info@touchpointsfu.ca</a>
               </BigText>
             </ContentGroup>
             <ContentGroup noPadding>
