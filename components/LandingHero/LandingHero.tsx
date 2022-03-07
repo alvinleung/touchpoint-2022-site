@@ -22,10 +22,10 @@ const LandingHero = (props: Props) => {
             <div
               className={block + "mr-auto border-b-0 sm:border-b-0 z-10 pb-0"}
             >
-              {"04/02/2020"}
+              Saturday
             </div>
             <div className={block + "mr-auto mt-[-2px] z-0"}>
-              9:00AM — 3:00PM
+              {"04/02/2022"}
             </div>
           </div>
           {/* (right) location group */}
