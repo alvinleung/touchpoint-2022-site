@@ -10,6 +10,7 @@ import {
 import GetTicketsButton from "../Button/GetTicketsButton";
 
 type Props = {
+  isLoaded: boolean;
   children: React.ReactNode;
 };
 
@@ -58,7 +59,7 @@ interface INavContext {
 const NavContext = React.createContext<INavContext>(null);
 export const useNavContext = () => useContext(NavContext);
 
-const Nav = ({ children }: Props) => {
+const Nav = ({ children, isLoaded }: Props) => {
   // the section in view
   const [currentSection, setCurrentSection] = useState(NavSections[0]);
   // the dispalying section
@@ -98,7 +99,11 @@ const Nav = ({ children }: Props) => {
 
   return (
     <>
-      <nav className="mx-4 2xl:mx-document-side z-[1000] h-16 sm:h-24 fixed left-0 right-0 flex flex-row items-center align-center">
+      <motion.nav
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        className="mx-4 2xl:mx-document-side z-[1000] h-16 sm:h-24 fixed left-0 right-0 flex flex-row items-center align-center"
+      >
         <div
           className="flex flex-row"
           onMouseLeave={() => setIsHovering(false)}
@@ -125,7 +130,7 @@ const Nav = ({ children }: Props) => {
         <div className="ml-auto text-[30px]">
           {mobileBreakpoint && <GetTicketsButton />}
         </div>
-      </nav>
+      </motion.nav>
       <NavContext.Provider value={{ currentSection, setCurrentSection }}>
         {children}
       </NavContext.Provider>

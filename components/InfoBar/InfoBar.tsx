@@ -34,6 +34,7 @@ const InfoBar = ({ children }: Props) => {
         transition: {
           duration: AnimationConfig.NORMAL,
           ease: AnimationConfig.EASING,
+          delay: 0.5,
         },
       }}
       ref={containerRef}

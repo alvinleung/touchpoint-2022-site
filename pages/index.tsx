@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LandingEffect } from "../components/LandingEffect/LandingEffect";
 
 import { Curtains } from "react-curtains";
@@ -13,6 +13,7 @@ import ContentGroupLabel from "../components/Layout/ContentGroupLabel";
 import ContentGroup from "../components/Layout/ContentGroup";
 import Button from "../components/Button/Button";
 import ExternalLink from "../components/ExternalLink/ExternalLink";
+import { motion } from "framer-motion";
 
 const Home: NextPage = () => {
   let deviceRatio = 1;
@@ -31,6 +32,12 @@ const Home: NextPage = () => {
     "Telus Digital": "https://www.telus.com/en/digital",
   };
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
   return (
     <div>
       <Head>
@@ -39,11 +46,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Nav>
+      <Nav isLoaded={isLoaded}>
         <InfoBar>
           TALKS @ SFU SRYE (04/02/22) / 10285 University Dr, Surrey, BC
         </InfoBar>
-        <main>
+        <motion.main
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: isLoaded ? 1 : 0,
+            y: isLoaded ? 0 : 20,
+            transition: { duration: 0.5 },
+          }}
+        >
           <Section id="Conference" noStyling>
             <LandingHero />
           </Section>
@@ -115,7 +129,7 @@ const Home: NextPage = () => {
               </ExternalLink>
             </BigText>
           </Section>
-        </main>
+        </motion.main>
       </Nav>
     </div>
   );
