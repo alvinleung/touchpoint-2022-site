@@ -9,10 +9,10 @@ const InfoBar = ({ children }: Props) => {
   const [containerMeasurement, containerRef] =
     useMeasureElement<HTMLDivElement>([]);
 
-  console.log(measurement && containerMeasurement.width * 0.014);
-
   const control = useAnimation();
   useEffect(() => {
+    // console.log("text width " + measurement.width);
+    // console.log("container width " + containerMeasurement.width);
     control.stop();
     control.set({ x: containerMeasurement && containerMeasurement.width });
     control.start({
@@ -39,8 +39,8 @@ const InfoBar = ({ children }: Props) => {
       ref={containerRef}
     >
       <motion.div
-        className="my-1 whitespace-nowrap"
-        initial={{ x: "100%" }}
+        className="my-1 whitespace-nowrap inline-block"
+        // initial={{ x: "100%" }}
         animate={control}
         ref={ref}
       >
