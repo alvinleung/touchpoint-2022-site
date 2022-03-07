@@ -89,10 +89,10 @@ const Home: NextPage = () => {
                 {/* <span className="ml-14 font-sans">01/01/22 — 01/02/22</span> */}
               </ContentGroupLabel>
               <BigText>
-                SIAT students and alumni are invited to interview at Touchpoint
-                2022 for an opportunity to intern at one of eight design
-                agencies and product companies in Vancouver. Interviews will be
-                held remotely between April 4-8, 2022.
+                SIAT students and alumni are invited to apply to interview with
+                one of eight design agencies and product companies at
+                Touchpoint. Interviews will be held remotely between April 4-8,
+                2022.
               </BigText>
               <div className="my-[.75em]">
                 <Button
