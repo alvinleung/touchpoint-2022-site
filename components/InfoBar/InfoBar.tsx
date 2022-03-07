@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { AnimationConfig } from "../AnimationConfig";
 import useMeasureElement from "../../hooks/useMeasureElement";
@@ -9,16 +9,23 @@ const InfoBar = ({ children }: Props) => {
   const [containerMeasurement, containerRef] =
     useMeasureElement<HTMLDivElement>([]);
 
+  const prevWidth = useRef(0);
+
   const control = useAnimation();
   useEffect(() => {
-    // console.log("text width " + measurement.width);
-    // console.log("container width " + containerMeasurement.width);
+    if (!containerMeasurement || !measurement) return;
+
     control.stop();
-    control.set({ x: containerMeasurement && containerMeasurement.width });
+
+    if (containerMeasurement.width !== prevWidth.current) {
+      control.set({ x: containerMeasurement.width });
+      prevWidth.current = containerMeasurement.width;
+    }
+
     control.start({
-      x: measurement && -measurement.width,
+      x: -measurement.width,
       transition: {
-        duration: containerMeasurement && containerMeasurement.width * 0.014,
+        duration: containerMeasurement.width * 0.014,
         ease: "linear",
         repeat: Infinity,
       },
