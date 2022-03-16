@@ -23,7 +23,11 @@ function AutoResizeCanvasWebgl({ onRender, onInit, onResize }: Props) {
   useEffect(() => {
     // setup canvas
     gl.current = canvasRef.current.getContext("webgl") as WebGLRenderingContext;
-    gl.current.viewport(0, 0, window.innerWidth, window.innerHeight);
+
+    const canvasRect = canvasRef.current.getBoundingClientRect();
+    const width = canvasRect.width;
+    const height = canvasRect.height;
+    gl.current.viewport(0, 0, width, height);
 
     let currentAnimationFrameNumber = 0;
     let isRendering = true;
