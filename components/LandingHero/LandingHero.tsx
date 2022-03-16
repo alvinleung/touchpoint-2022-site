@@ -41,18 +41,18 @@ const LandingHero = (props: Props) => {
               Annual Design Conference
             </div>
           </div>
-          <div className="absolute flex flex-row right-0 top-[3em]">
-            {/* <div className={block + "mr-4"}>SPEAKERS TBA</div> */}
-            {/* <div className={block + "mr-auto"}>4/02/2022</div> */}
-          </div>
+          {/* <div className="absolute flex flex-row right-0 top-[3em]"> */}
+          {/* <div className={block + "mr-4"}>SPEAKERS TBA</div> */}
+          {/* <div className={block + "mr-auto"}>4/02/2022</div> */}
+          {/* </div> */}
         </div>
       </div>
 
-      <div className="flex absolute left-0 right-0 w-[100%] bottom-[25vh]">
-        <div className="mx-auto text-[10vw]">
-          {!mobileBreakpoint && <GetTicketsButton />}
+      {!mobileBreakpoint && (
+        <div className="flex absolute left-0 right-0 w-[100%] bottom-[25vh]">
+          <div className="mx-auto text-[10vw]"></div>
         </div>
-      </div>
+      )}
     </LandingEffect>
   );
 };

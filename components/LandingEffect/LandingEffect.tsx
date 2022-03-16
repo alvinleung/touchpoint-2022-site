@@ -94,7 +94,7 @@ export function LandingEffect({ children }) {
   }, []);
 
   return (
-    <div className="w-full h-screen min-h-[20em] text-fluid-medium flex flex-col relative">
+    <div className="w-full h-screen min-h-[16em] text-fluid-medium flex flex-col relative">
       <div className="absolute top-0 left-0 right-0 bottom-0 -z-10">
         <AutoResizeCanvasWebgl
           onRender={render}
