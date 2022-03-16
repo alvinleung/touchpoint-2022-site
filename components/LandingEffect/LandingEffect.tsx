@@ -8,6 +8,7 @@ import CHECKER_FRAG from "./CheckerEffectGL.frag";
 import CHECKER_VERT from "./CheckerEffectGL.vert";
 
 import AutoResizeCanvasWebgl from "../AutoResizeCanvas/AutoResizeCanvasWebgl";
+import { useReducedMotion } from "framer-motion";
 
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
@@ -19,6 +20,9 @@ export function LandingEffect({ children }) {
   const mousePos = useRef(new Vec2(0, 0));
   const noiseOffset = useRef({ x: 0, y: 0 });
   const checkerSize = useRef(10);
+
+  // for accessibility
+  const shouldReduceMotion = useReducedMotion();
 
   // for webgl
   const programInfoRef = useRef<twgl.ProgramInfo>();
@@ -43,6 +47,8 @@ export function LandingEffect({ children }) {
     gl: WebGLRenderingContext,
     delta: number
   ) => {
+    if (shouldReduceMotion) return;
+
     const noiseXVel = -(mousePos.current.x / canvas.width - 0.5) * 0.05;
     const noiseYVel = (mousePos.current.y / canvas.height - 0.5) * 0.05;
     noiseOffset.current.y += delta * 0.001 + clamp(noiseYVel, -0.7, 0.4);
