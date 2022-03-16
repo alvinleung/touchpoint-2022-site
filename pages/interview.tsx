@@ -25,13 +25,15 @@ const Interview: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>About — Touchpoint 2022</title>
+        <title>Interview — Touchpoint 2022</title>
         <meta name="description" content="Touchpoint 2022" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <Section id="Interview">
+        {/* for nav bar compensation */}
+        <div className="h-24"></div>
+        <Section id="Interview" noSeparator>
           <ContentGroup mediumPadding>
             <ContentGroupLabel>Interviews With</ContentGroupLabel>
             <div className="text-small w-3/4 uppercase mt-2">

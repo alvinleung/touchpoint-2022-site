@@ -19,7 +19,9 @@ const About: NextPage = () => {
       </Head>
 
       <main>
-        <Section id="About">
+        {/* for nav bar compensation */}
+        <div className="h-24"></div>
+        <Section id="About" noSeparator>
           <ContentGroup>
             <ContentGroupLabel>About</ContentGroupLabel>
             <BigText>

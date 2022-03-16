@@ -42,7 +42,7 @@ const LandingHero = (props: Props) => {
             </div>
           </div>
           <div className="absolute flex flex-row right-0 top-[3em]">
-            <div className={block + "mr-4"}>SPEAKERS TBA</div>
+            {/* <div className={block + "mr-4"}>SPEAKERS TBA</div> */}
             {/* <div className={block + "mr-auto"}>4/02/2022</div> */}
           </div>
         </div>

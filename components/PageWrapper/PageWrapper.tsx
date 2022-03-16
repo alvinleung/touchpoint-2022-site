@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import InfoBar from "../InfoBar/InfoBar";
 import { Nav } from "../Nav/Nav";
 
 type Props = {
@@ -18,6 +19,10 @@ const PageWrapper = ({ children }: Props) => {
 
   return (
     <PageLoadedContext.Provider value={isLoaded}>
+      <InfoBar>
+        TALKS @ SFU SRYE (04/02/22) from 10:00AM — 4:00PM / 10285 University Dr,
+        Surrey, BC
+      </InfoBar>
       <Nav isLoaded={isLoaded}>{children}</Nav>
     </PageLoadedContext.Provider>
   );

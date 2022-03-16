@@ -18,6 +18,7 @@ const NavLink = ({
   navItemIndex,
   currentIndex,
   onLinkHover,
+  onClick,
 }) => {
   const motionDiretion = currentIndex > navItemIndex ? "+" : "-";
 
@@ -26,6 +27,7 @@ const NavLink = ({
       <a
         className="text-tiny no-underline mr-4 sm:mr-8 text-black flex flex-row items-center"
         onMouseEnter={() => onLinkHover()}
+        onClick={onClick}
       >
         <div className="rounded-full w-[.5em] h-[.5em] border border-black mr-[.3em] overflow-hidden">
           <motion.div
@@ -67,7 +69,7 @@ const Nav = ({ children, isLoaded }: Props) => {
   // the section in view
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   // the dispalying section
-  const [isHovering, setIsHovering] = useState(false);
+  // const [isHovering, setIsHovering] = useState(false);
   const [activeSectionIndex, setActiveSectionIndex] = useState(null);
 
   const router = useRouter();
@@ -80,9 +82,9 @@ const Nav = ({ children, isLoaded }: Props) => {
   }, [router.pathname]);
 
   useEffect(() => {
-    if (isHovering) return;
+    // if (isHovering) return;
     setActiveSectionIndex(currentSectionIndex);
-  }, [currentSectionIndex, isHovering]);
+  }, [currentSectionIndex]);
 
   return (
     <>
@@ -93,8 +95,8 @@ const Nav = ({ children, isLoaded }: Props) => {
       >
         <div
           className="flex flex-row"
-          onMouseLeave={() => setIsHovering(false)}
-          onMouseEnter={() => setIsHovering(true)}
+          // onMouseLeave={() => setIsHovering(false)}
+          // onMouseEnter={() => setIsHovering(true)}
         >
           {Object.values(NAV_ITEMS).map((nameItemName, i) => {
             const isHoveringSection = activeSectionIndex === i;
@@ -106,7 +108,10 @@ const Nav = ({ children, isLoaded }: Props) => {
                 currentIndex={currentSectionIndex}
                 navItemIndex={i}
                 key={i}
-                onLinkHover={() => setActiveSectionIndex(i)}
+                onLinkHover={() => {
+                  // setActiveSectionIndex(i)
+                }}
+                onClick={() => setCurrentSectionIndex(i)}
               >
                 {nameItemName.label}
               </NavLink>
