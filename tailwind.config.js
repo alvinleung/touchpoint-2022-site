@@ -85,7 +85,12 @@ module.exports = {
             ),
           },
         ],
-        "huge-script": "348px",
+        "huge-script": getResponsiveValue(
+          screens["sm"],
+          screens["xl"],
+          100,
+          348
+        ),
         // "fluid-medium": [
         //   getResponsiveValue(screens["md"], screens["2xl"], 22, 50),
         //   { letterSpacing: "-0.02em", lineHeight: "1em" },

@@ -17,7 +17,7 @@ export default [
     time: "TBA",
     graduation: "2018",
     role: "Design Operations Lead + Chief of Staff",
-    name: "Salatheil Wells",
+    name: "Salathiel Wells",
     company: "SAP",
   },
   {

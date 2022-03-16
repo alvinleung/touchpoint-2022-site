@@ -15,39 +15,47 @@ export const Intermission = (props: Props) => {
       return;
     }
 
-    const lastElmPosX = lastElmRef.current?.getBoundingClientRect().x;
-
     function resetAnimation() {
-      if (typeof window === "undefined" || !lastElmPosX) return;
+      const lastElmBound = lastElmRef.current?.getBoundingClientRect();
+
+      if (typeof window === "undefined" || !lastElmBound) return;
+      const targetOffset = -lastElmBound.width;
 
       scrollAnimation.set({
-        x: 0,
+        x: targetOffset,
       });
 
-      const targetOffset = -lastElmPosX + 180;
-
       scrollAnimation.start({
-        x: targetOffset,
-        transition: { repeat: Infinity, duration: 8, ease: "linear" },
+        x: 0,
+        transition: {
+          repeat: Infinity,
+          duration: lastElmBound.width * 0.006,
+          ease: "linear",
+        },
       });
     }
     window.addEventListener("resize", resetAnimation);
+    // hacky way to get the animation
+    setTimeout(() => resetAnimation(), 1000);
     resetAnimation();
-    return () => window.removeEventListener("resize", resetAnimation);
+
+    return () => {
+      window.removeEventListener("resize", resetAnimation);
+    };
   }, []);
 
   return (
-    <div className="overflow-hidden -mb-20">
-      <div className="border-b-[1px] border-black relative bottom-20">
+    <div className="overflow-hidden -mb-[.5em] text-huge-script font-script">
+      <div className="border-b-[1px] border-black relative bottom-[.5em]">
         <motion.div
           animate={scrollAnimation}
-          className="text-huge-script font-script leading-none relative top-[.305em] tracking-tight whitespace-nowrap"
+          className="leading-[1.4em] relative top-[.505em] tracking-tight whitespace-nowrap"
         >
-          <span className="mx-12">Intermission</span>
-          <span ref={lastElmRef} className="mx-12">
+          <span className="pr-[.3em]">Intermission</span>
+          <span className="pr-[.3em]" ref={lastElmRef}>
             Intermission
           </span>
-          <span className="mx-12">Intermission</span>
+          <span className="">Intermission</span>
         </motion.div>
       </div>
     </div>
