@@ -1,13 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import Button from "../Button/Button";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { AnimationConfig } from "../AnimationConfig";
-import {
-  breakpoints,
-  useBreakpoint,
-  useMobileBreakpoint,
-} from "../../hooks/useBreakpoint";
+import { useMobileBreakpoint } from "../../hooks/useBreakpoint";
 import GetTicketsButton from "../Button/GetTicketsButton";
+import { useRouter } from "next/router";
 
 type Props = {
   isLoaded: boolean;
@@ -21,81 +18,71 @@ const NavLink = ({
   navItemIndex,
   currentIndex,
   onLinkHover,
-  onClick,
 }) => {
   const motionDiretion = currentIndex > navItemIndex ? "+" : "-";
 
   return (
-    <a
-      href={href}
-      className="text-tiny no-underline mr-4 sm:mr-8 text-black flex flex-row items-center"
-      onMouseEnter={() => onLinkHover()}
-      onClick={onClick}
-    >
-      <div className="rounded-full w-[.5em] h-[.5em] border border-black mr-[.3em] overflow-hidden">
-        <motion.div
-          className="w-full h-full bg-black rounded-full"
-          initial={{ x: "-100%" }}
-          animate={{
-            x: isActive ? 0 : motionDiretion + "100%",
-          }}
-          transition={{
-            ease: AnimationConfig.EASING,
-            duration: 0.2,
-          }}
-        ></motion.div>
-      </div>
-      {children}
-    </a>
+    <Link href={href}>
+      <a
+        className="text-tiny no-underline mr-4 sm:mr-8 text-black flex flex-row items-center"
+        onMouseEnter={() => onLinkHover()}
+      >
+        <div className="rounded-full w-[.5em] h-[.5em] border border-black mr-[.3em] overflow-hidden">
+          <motion.div
+            className="w-full h-full bg-black rounded-full"
+            initial={{ x: "-100%" }}
+            animate={{
+              x: isActive ? 0 : motionDiretion + "100%",
+            }}
+            transition={{
+              ease: AnimationConfig.EASING,
+              duration: 0.2,
+            }}
+          ></motion.div>
+        </div>
+        {children}
+      </a>
+    </Link>
   );
 };
 
-export const NavSections = ["Conference", "About", "Interview"];
-
-interface INavContext {
-  setCurrentSection: React.Dispatch<React.SetStateAction<string>>;
-  currentSection: string;
-}
-const NavContext = React.createContext<INavContext>(null);
-export const useNavContext = () => useContext(NavContext);
+const NAV_ITEMS = [
+  {
+    label: "Conference",
+    url: "/",
+  },
+  {
+    label: "About",
+    url: "/about",
+  },
+  {
+    label: "Interview",
+    url: "/interview",
+  },
+];
 
 const Nav = ({ children, isLoaded }: Props) => {
-  // the section in view
-  const [currentSection, setCurrentSection] = useState(NavSections[0]);
-  // the dispalying section
-  const [isHovering, setIsHovering] = useState(false);
-  const [activeSection, setActiveSection] = useState(null);
-  const selectionIndex = NavSections.indexOf(activeSection);
-
-  const [isJumpingToSection, setIsJumpingToSection] = useState(false);
-
   const mobileBreakpoint = useMobileBreakpoint();
 
-  const jumpSectionTimer = useRef(null);
-  function jumpToSection() {
-    setIsJumpingToSection(true);
-    jumpSectionTimer.current && clearTimeout(jumpSectionTimer.current);
-    jumpSectionTimer.current = setTimeout(
-      () => setIsJumpingToSection(false),
-      1000
+  // the section in view
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  // the dispalying section
+  const [isHovering, setIsHovering] = useState(false);
+  const [activeSectionIndex, setActiveSectionIndex] = useState(null);
+
+  const router = useRouter();
+  useEffect(() => {
+    // console.log(router.pathname);
+    const currentSectionIndex = NAV_ITEMS.findIndex(
+      ({ url }) => url === router.pathname
     );
-  }
+    setCurrentSectionIndex(currentSectionIndex);
+  }, [router.pathname]);
 
   useEffect(() => {
-    const handleWheel = () => {
-      setIsJumpingToSection(false);
-      jumpSectionTimer.current && clearTimeout(jumpSectionTimer.current);
-    };
-    window.addEventListener("wheel", () => handleWheel);
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isJumpingToSection || isHovering) return;
-    setActiveSection(currentSection);
-  }, [currentSection, isJumpingToSection, isHovering]);
+    if (isHovering) return;
+    setActiveSectionIndex(currentSectionIndex);
+  }, [currentSectionIndex, isHovering]);
 
   return (
     <>
@@ -109,20 +96,19 @@ const Nav = ({ children, isLoaded }: Props) => {
           onMouseLeave={() => setIsHovering(false)}
           onMouseEnter={() => setIsHovering(true)}
         >
-          {NavSections.map((navSection, i) => {
-            const isHoveringSection = activeSection === navSection;
+          {Object.values(NAV_ITEMS).map((nameItemName, i) => {
+            const isHoveringSection = activeSectionIndex === i;
 
             return (
               <NavLink
-                href={`#${navSection}`}
+                href={`${nameItemName.url}`}
                 isActive={isHoveringSection}
-                currentIndex={selectionIndex}
+                currentIndex={currentSectionIndex}
                 navItemIndex={i}
                 key={i}
-                onLinkHover={() => setActiveSection(navSection)}
-                onClick={() => jumpToSection()}
+                onLinkHover={() => setActiveSectionIndex(i)}
               >
-                {navSection}
+                {nameItemName.label}
               </NavLink>
             );
           })}
@@ -131,9 +117,7 @@ const Nav = ({ children, isLoaded }: Props) => {
           {mobileBreakpoint && <GetTicketsButton />}
         </div>
       </motion.nav>
-      <NavContext.Provider value={{ currentSection, setCurrentSection }}>
-        {children}
-      </NavContext.Provider>
+      {children}
     </>
   );
 };

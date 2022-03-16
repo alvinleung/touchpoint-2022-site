@@ -1,5 +1,4 @@
 import React, { MutableRefObject, useEffect, useRef } from "react";
-import { useNavContext } from "../Nav/Nav";
 
 type Props = {
   children: React.ReactNode;
@@ -9,28 +8,6 @@ type Props = {
 
 const Section = ({ children, id, noStyling }: Props) => {
   const sectionRef = useRef() as MutableRefObject<HTMLElement>;
-  const { currentSection, setCurrentSection } = useNavContext();
-
-  useEffect(() => {
-    if (!id) return;
-
-    const observerOptions = {
-      threshold: 0,
-      rootMargin: "-50%  0px",
-    };
-    const observer = new IntersectionObserver((entries, observe) => {
-      const entry = entries[0];
-
-      if (entry.isIntersecting) {
-        setCurrentSection(id);
-      }
-    }, observerOptions);
-    observer.observe(sectionRef.current);
-
-    return () => {
-      observer.unobserve(sectionRef.current);
-    };
-  }, []);
 
   if (noStyling)
     return (
