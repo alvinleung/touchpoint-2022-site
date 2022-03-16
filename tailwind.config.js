@@ -98,19 +98,19 @@ module.exports = {
 
       margin: {
         "document-side": getResponsiveValue(
-          screens["sm"],
-          screens["xl"],
+          screens["md"],
+          screens["2xl"],
           24,
-          120
+          60
         ),
         "document-top": "2rem",
       },
       padding: {
         "document-side": getResponsiveValue(
-          screens["sm"],
-          screens["xl"],
+          screens["md"],
+          screens["2xl"],
           24,
-          120
+          60
         ),
         "document-top": "2rem",
         "fluid-medium": ".2em",

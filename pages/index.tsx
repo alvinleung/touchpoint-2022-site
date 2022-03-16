@@ -49,7 +49,8 @@ const Home: NextPage = () => {
 
       <Nav isLoaded={isLoaded}>
         <InfoBar>
-          TALKS @ SFU SRYE (04/02/22) / 10285 University Dr, Surrey, BC
+          TALKS @ SFU SRYE (04/02/22) from 10:00AM — 4:00PM / 10285 University
+          Dr, Surrey, BC
         </InfoBar>
         <motion.main
           initial={{ opacity: 0 }}
@@ -89,8 +90,8 @@ const Home: NextPage = () => {
             <ContentGroup mediumPadding>
               <ContentGroupLabel>Interviews With</ContentGroupLabel>
               <div className="text-small w-3/4 uppercase mt-2">
-                {Object.keys(companies).map((company) => (
-                  <ExternalLink href={companies[company]} border>
+                {Object.keys(companies).map((company, index) => (
+                  <ExternalLink href={companies[company]} key={index} border>
                     {company}
                   </ExternalLink>
                 ))}

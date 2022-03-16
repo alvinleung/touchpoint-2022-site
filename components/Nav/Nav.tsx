@@ -102,7 +102,7 @@ const Nav = ({ children, isLoaded }: Props) => {
       <motion.nav
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoaded ? 1 : 0 }}
-        className="mx-4 2xl:mx-document-side z-[1000] h-16 sm:h-24 fixed left-0 right-0 flex flex-row items-center align-center"
+        className="mx-4 md:mx-document-side z-[1000] h-16 sm:h-24 fixed left-0 right-0 flex flex-row items-center align-center"
       >
         <div
           className="flex flex-row"

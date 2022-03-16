@@ -18,12 +18,12 @@ const InfoBar = ({ children }: Props) => {
     control.stop();
 
     if (containerMeasurement.width !== prevWidth.current) {
-      control.set({ x: containerMeasurement.width });
+      control.set({ x: -measurement.width });
       prevWidth.current = containerMeasurement.width;
     }
 
     control.start({
-      x: -measurement.width,
+      x: containerMeasurement.width,
       transition: {
         duration: containerMeasurement.width * 0.014,
         ease: "linear",
@@ -47,12 +47,14 @@ const InfoBar = ({ children }: Props) => {
       ref={containerRef}
     >
       <motion.div
-        className="my-1 whitespace-nowrap inline-block"
+        className="my-1 whitespace-nowrap inline-flex flex-row"
         // initial={{ x: "100%" }}
         animate={control}
         ref={ref}
       >
         {children}
+        {/* <div className="min-w-screen">{children}</div> */}
+        {/* <div className="">{children}</div> */}
       </motion.div>
     </motion.div>
   );
