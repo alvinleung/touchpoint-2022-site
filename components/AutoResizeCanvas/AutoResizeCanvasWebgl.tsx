@@ -25,6 +25,9 @@ function AutoResizeCanvasWebgl({ onRender, onInit, onResize }: Props) {
     gl.current = canvasRef.current.getContext("webgl") as WebGLRenderingContext;
     gl.current.viewport(0, 0, window.innerWidth, window.innerHeight);
 
+    let currentAnimationFrameNumber = 0;
+    let isRendering = true;
+
     async function init() {
       // init
       onInit && (await onInit(canvasRef.current, gl.current));
@@ -35,12 +38,21 @@ function AutoResizeCanvasWebgl({ onRender, onInit, onResize }: Props) {
         const delta = currentFrameTime - lastFrameTime;
         lastFrameTime = currentFrameTime;
 
-        onRender && onRender(canvasRef.current, gl.current, delta);
-        requestAnimationFrame(updateFrame);
+        canvasRef.current &&
+          gl.current &&
+          onRender &&
+          onRender(canvasRef.current, gl.current, delta);
+
+        currentAnimationFrameNumber = requestAnimationFrame(updateFrame);
       }
-      requestAnimationFrame(updateFrame);
+      currentAnimationFrameNumber = requestAnimationFrame(updateFrame);
     }
     init();
+
+    // clean up
+    return () => {
+      cancelAnimationFrame(currentAnimationFrameNumber);
+    };
   }, []);
 
   useEffect(() => {
