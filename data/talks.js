@@ -22,8 +22,8 @@ export default [
   },
   {
     time: "TBA",
-    graduation: "2016",
-    role: "Senior UX Strategist",
+    graduation: "2018",
+    role: "Senior Product Designer",
     name: "Robbie Sebullen",
     company: "Invoke Media",
   },
@@ -57,5 +57,12 @@ export default [
     role: "Product Designer",
     name: "Andrew Fung",
     company: "Clio",
+  },
+  {
+    time: "TBA",
+    graduation: "2019",
+    role: "Sumeet Anand",
+    name: "Interaction Designer",
+    company: "Google",
   },
 ];
