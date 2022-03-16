@@ -47,8 +47,10 @@ function AutoResizeCanvasWebgl({ onRender, onInit, onResize }: Props) {
     if (!hasInit) return;
 
     function handleResize() {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      // instead of window size, use the canvas size to drive the value
+      const canvasRect = canvasRef.current.getBoundingClientRect();
+      const width = canvasRect.width;
+      const height = canvasRect.height;
 
       // handle window resize
       setCanvasSize({
