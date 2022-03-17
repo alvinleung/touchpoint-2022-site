@@ -41,3 +41,7 @@ a {
 
   z-index: -1;
 }
+
+span.avoidwrap {
+  display: inline-block;
+}

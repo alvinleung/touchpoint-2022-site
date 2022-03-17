@@ -45,7 +45,8 @@ const Home: NextPage = () => {
                     role={role}
                     key={index}
                   >
-                    {`${name} for ${company}`}
+                    <span className="avoidwrap">{name}</span> for{" "}
+                    <span className="avoidwrap">{company}</span>
                   </TalkItem>
                 );
               }

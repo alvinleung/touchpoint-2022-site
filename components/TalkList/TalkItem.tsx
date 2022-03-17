@@ -4,7 +4,7 @@ interface Props {
   time: string;
   graduation: string;
   role: string;
-  children: string;
+  children: React.ReactNode;
 }
 
 export const TalkItem = ({ time, graduation, role, children }: Props) => {
