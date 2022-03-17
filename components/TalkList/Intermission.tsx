@@ -45,11 +45,11 @@ export const Intermission = (props: Props) => {
   }, []);
 
   return (
-    <div className="overflow-hidden -mb-[.5em] text-huge-script font-script">
+    <div className="overflow-hidden -mb-[.5em] text-huge-script font-script -tracking-[.02em]">
       <div className="border-b-[1px] border-black relative bottom-[.5em]">
         <motion.div
           animate={scrollAnimation}
-          className="leading-[1.4em] relative top-[.505em] tracking-tight whitespace-nowrap"
+          className="leading-[1.4em] relative top-[.505em] whitespace-nowrap"
         >
           <span className="pr-[.3em]">Intermission</span>
           <span className="pr-[.3em]" ref={lastElmRef}>

@@ -16,7 +16,7 @@ export default [
   {
     time: "TBA",
     graduation: "2018",
-    role: "Design Operations Lead + Chief of Staff",
+    role: "Design Ops. Lead + Chief of Staff",
     name: "Salathiel Wells",
     company: "SAP",
   },
@@ -25,7 +25,7 @@ export default [
     graduation: "2018",
     role: "Senior Product Designer",
     name: "Robbie Sebullen",
-    company: "Invoke Media",
+    company: "Invoke Digital",
   },
   // ++++++++++++++++++++++++++++++++++++
   // Intermission
@@ -54,7 +54,7 @@ export default [
   {
     time: "TBA",
     graduation: "2012",
-    role: "Product Designer",
+    role: "Senior Product Designer",
     name: "Andrew Fung",
     company: "Clio",
   },
@@ -64,5 +64,12 @@ export default [
     role: "Sumeet Anand",
     name: "Interaction Designer",
     company: "Google",
+  },
+  {
+    time: "TBA",
+    graduation: "2016",
+    role: "Senior UX Strategist",
+    name: "Roxanne Henschke",
+    company: "Engine Digital",
   },
 ];
