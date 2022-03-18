@@ -1,10 +1,31 @@
 export default [
   {
     time: "TBA",
-    graduation: "2003",
+    graduation: "2007",
     role: "Co-Founder",
     name: "Dale Evernden",
     company: "Rival Technologies",
+  },
+  {
+    time: "TBA",
+    graduation: "2009",
+    role: "Senior Product Designer",
+    name: "Leah (Maestri) Evernden",
+    company: "Microsoft",
+  },
+  {
+    time: "TBA",
+    graduation: "2012",
+    role: "Senior Product Designer",
+    name: "Andrew Fung",
+    company: "Clio",
+  },
+  {
+    time: "TBA",
+    graduation: "2016",
+    role: "Senior UX Strategist",
+    name: "Roxanne Henschke",
+    company: "Engine Digital",
   },
   {
     time: "TBA",
@@ -16,33 +37,9 @@ export default [
   {
     time: "TBA",
     graduation: "2018",
-    role: "Design Ops. Lead + Chief of Staff",
-    name: "Salathiel Wells",
-    company: "SAP",
-  },
-  {
-    time: "TBA",
-    graduation: "2018",
     role: "Senior Product Designer",
     name: "Robbie Sebullen",
     company: "Invoke Digital",
-  },
-  // ++++++++++++++++++++++++++++++++++++
-  // Intermission
-  {
-    time: "intermission",
-    graduation: "",
-    role: "",
-    name: "",
-    company: "",
-  },
-  // ++++++++++++++++++++++++++++++++++++
-  {
-    time: "TBA",
-    graduation: "2007",
-    role: "Senior Product Designer",
-    name: "Leah (Maestri) Evernden",
-    company: "Microsoft",
   },
   {
     time: "TBA",
@@ -53,23 +50,27 @@ export default [
   },
   {
     time: "TBA",
-    graduation: "2012",
-    role: "Senior Product Designer",
-    name: "Andrew Fung",
-    company: "Clio",
+    graduation: "2018",
+    role: "Design Ops. Lead + Chief of Staff",
+    name: "Salathiel Wells",
+    company: "SAP",
   },
   {
     time: "TBA",
     graduation: "2019",
-    role: "Sumeet Anand",
-    name: "Interaction Designer",
+    role: "Interaction Designer",
+    name: "Sumeet Anand",
     company: "Google",
   },
-  {
-    time: "TBA",
-    graduation: "2016",
-    role: "Senior UX Strategist",
-    name: "Roxanne Henschke",
-    company: "Engine Digital",
-  },
+
+  // ++++++++++++++++++++++++++++++++++++
+  // Intermission
+  // {
+  //   time: "intermission",
+  //   graduation: "",
+  //   role: "",
+  //   name: "",
+  //   company: "",
+  // },
+  // ++++++++++++++++++++++++++++++++++++
 ];
