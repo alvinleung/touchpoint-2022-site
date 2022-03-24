@@ -47,8 +47,8 @@ const Home: NextPage = () => {
                   >
                     {company !== "" && (
                       <>
-                        <span className="avoidwrap">{name}</span> for{" "}
-                        <span className="avoidwrap">{company}</span>
+                        <span className="avoidwrap">{name}</span>
+                        <span className="avoidwrap">for {company}</span>
                       </>
                     )}
                     {company === "" && (
