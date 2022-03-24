@@ -1,76 +1,98 @@
 export default [
   {
-    time: "TBA",
-    graduation: "2007",
-    role: "Co-Founder",
-    name: "Dale Evernden",
-    company: "Rival Technologies",
+    time: "10:00 — 10:20",
+    graduation: "",
+    role: "",
+    name: "Opening Remarks",
+    company: "",
   },
   {
-    time: "TBA",
-    graduation: "2009",
-    role: "Senior Product Designer",
-    name: "Leah (Maestri) Evernden",
-    company: "Microsoft",
-  },
-  {
-    time: "TBA",
+    time: "10:25 — 10:40",
     graduation: "2012",
     role: "Senior Product Designer",
     name: "Andrew Fung",
     company: "Clio",
   },
   {
-    time: "TBA",
+    time: "10:45 — 11:00",
     graduation: "2016",
     role: "Senior UX Strategist",
     name: "Roxanne Henschke",
     company: "Engine Digital",
   },
   {
-    time: "TBA",
-    graduation: "2018",
-    role: "Product Designer",
-    name: "Robyn Goodridge",
-    company: "Facebook",
-  },
-  {
-    time: "TBA",
+    time: "11:05 — 11:20",
     graduation: "2018",
     role: "Senior Product Designer",
     name: "Robbie Sebullen",
     company: "Invoke Digital",
   },
   {
-    time: "TBA",
+    time: "11:25 — 11:40",
+    graduation: "2018",
+    role: "Product Designer",
+    name: "Robyn Goodridge",
+    company: "Facebook",
+  },
+  {
+    time: "11:45 — 12:00",
+    graduation: "n/a",
+    role: "sponsor",
+    name: "Digital Health Circle",
+    company: "",
+  },
+
+  // ++++++++++++++++++++++++++++++++++++
+  // Intermission
+  {
+    time: "intermission",
+    graduation: "",
+    role: "",
+    name: "",
+    company: "",
+  },
+  // ++++++++++++++++++++++++++++++++++++
+  {
+    time: "1:05 — 1:20",
     graduation: "2018",
     role: "Senior Product Designer",
     name: "Kaveh Hastroodi",
     company: "City of Surrey",
   },
   {
-    time: "TBA",
+    time: "1:25 — 1:40",
+    graduation: "2009",
+    role: "Senior Product Designer",
+    name: "Leah (Maestri) Evernden",
+    company: "Microsoft",
+  },
+
+  {
+    time: "1:45 — 2:00",
     graduation: "2018",
     role: "Design Ops. Lead + Chief of Staff",
     name: "Salathiel Wells",
     company: "SAP",
   },
   {
-    time: "TBA",
+    time: "2:05 — 2:20",
     graduation: "2019",
     role: "Interaction Designer",
     name: "Sumeet Anand",
     company: "Google",
   },
-
-  // ++++++++++++++++++++++++++++++++++++
-  // Intermission
-  // {
-  //   time: "intermission",
-  //   graduation: "",
-  //   role: "",
-  //   name: "",
-  //   company: "",
-  // },
-  // ++++++++++++++++++++++++++++++++++++
+  {
+    time: "2:25 — 2:40",
+    graduation: "2007",
+    role: "Co-Founder",
+    name: "Dale Evernden",
+    company: "Rival Technologies",
+  },
+  {
+    time: "2:40 — 3:00",
+    graduation: "",
+    role: "",
+    name: "Closing Remarks",
+    company: "",
+  },
 ];

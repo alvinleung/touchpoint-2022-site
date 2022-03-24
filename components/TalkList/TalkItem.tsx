@@ -15,12 +15,20 @@ export const TalkItem = ({ time, graduation, role, children }: Props) => {
         <span>{time}</span>
       </div>
       <div className="text-tiny">
-        <span className="font-script mr-2">Grad</span>
-        <span>{graduation}</span>
+        {graduation && (
+          <>
+            <span className="font-script mr-2">Grad</span>
+            <span>{graduation}</span>
+          </>
+        )}
       </div>
       <div className="text-tiny">
-        <span className="font-script mr-2">Role</span>
-        <span>{role}</span>
+        {role && (
+          <>
+            <span className="font-script mr-2">Role</span>
+            <span>{role}</span>
+          </>
+        )}
       </div>
       <div className="pt-[.3em] sm:pt-0 sm:col-span-3 leading-[90%] tracking-tighter relative top-[.084em] -mt-[.084em]">
         {children}

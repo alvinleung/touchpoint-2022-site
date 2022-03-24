@@ -45,8 +45,17 @@ const Home: NextPage = () => {
                     role={role}
                     key={index}
                   >
-                    <span className="avoidwrap">{name}</span> for{" "}
-                    <span className="avoidwrap">{company}</span>
+                    {company !== "" && (
+                      <>
+                        <span className="avoidwrap">{name}</span> for{" "}
+                        <span className="avoidwrap">{company}</span>
+                      </>
+                    )}
+                    {company === "" && (
+                      <>
+                        <span className="avoidwrap">{name}</span>
+                      </>
+                    )}
                   </TalkItem>
                 );
               }
