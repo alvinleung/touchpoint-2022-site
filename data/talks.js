@@ -36,7 +36,7 @@ export default [
   },
   {
     time: "11:45 — 12:00",
-    graduation: "n/a",
+    graduation: "",
     role: "sponsor",
     name: "Digital Health Circle",
     company: "",
