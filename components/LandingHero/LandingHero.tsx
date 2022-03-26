@@ -8,6 +8,8 @@ type Props = {};
 const LandingHero = (props: Props) => {
   const mobileBreakpoint = useMobileBreakpoint();
 
+  console.log(mobileBreakpoint);
+
   const block =
     "bg-black text-white border sm:border-2 border-white px-fluid-medium py-fluid-small ";
 
@@ -50,7 +52,9 @@ const LandingHero = (props: Props) => {
 
       {!mobileBreakpoint && (
         <div className="flex absolute left-0 right-0 w-[100%] bottom-[25vh]">
-          <div className="mx-auto text-[10vw]"></div>
+          <div className="mx-auto text-[10vw]">
+            <GetTicketsButton />
+          </div>
         </div>
       )}
     </LandingEffect>
