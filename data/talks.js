@@ -1,5 +1,12 @@
 export default [
   {
+    time: "9:30 — 10:00",
+    graduation: "",
+    role: "",
+    name: "Doors Open",
+    company: "",
+  },
+  {
     time: "10:00 — 10:20",
     graduation: "",
     role: "",
@@ -37,7 +44,7 @@ export default [
   {
     time: "11:45 — 12:00",
     graduation: "",
-    role: "sponsor",
+    role: "Sponsor",
     name: "Digital Health Circle",
     company: "",
   },

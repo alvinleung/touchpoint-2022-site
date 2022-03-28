@@ -49,8 +49,7 @@ const Home: NextPage = () => {
                       <>
                         <span className="avoidwrap">{name} </span>
                         <span className="avoidwrap">
-                          &nbsp;{" "}
-                          <span className="font-script leading-[0em]">for</span>{" "}
+                          &nbsp;for&nbsp;
                           {company}
                         </span>
                       </>
