@@ -63,7 +63,7 @@ export default [
     time: "1:05 — 1:20",
     graduation: "2018",
     role: "Senior Product Designer",
-    name: "Kaveh Hastroodi",
+    name: "Kaveh Hashtroodi",
     company: "City of Surrey",
   },
   {
