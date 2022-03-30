@@ -37,7 +37,7 @@ export default [
   {
     time: "11:25 — 11:40",
     graduation: "2018",
-    role: "Product Designer",
+    role: "Senior Product Designer",
     name: "Robyn Goodridge",
     company: "Facebook",
   },
